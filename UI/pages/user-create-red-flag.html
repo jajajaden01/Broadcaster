@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body class="dashboad-body">
+    <header>
+        <div class="container-dashboad container-flex">
+            <div class="header-logo header-logo-dash">
+                    <span class="logo-icon">&#127757; </span>
+                    <span class="logo-word"> Boadcaster</span>
+            </div>
+            <div class="header-user">
+                <h1 class="user-info">
+                    <span class="user-logo">&#128100;</span>
+                    <span class="user-name">Jasmin</span>
+                </h1>
+                <a href="user-sing-in.html" class="sinup-btn log-out to-change">Sign out</a>
+                <p class="menu-icon hide-me">&#9776;</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="sec-dashboad">
+        <div class="menus">
+            <ul class="menu-list">
+                <li class="list-item"><a href="user-create-red-flag.html" class="item-link">Red-flag</a></li>
+                <!-- <li class="list-item red-sub span-data"><span class="item-link">Red-Flad<span class="trick">---------</span><span class="cross">&#9660;</span></span></li> -->
+                <div class="sub-menus show-me">
+                    <li class="list-item"><a href="user-draft-records-list.html" class="item-link">Draft</a></li>
+                    <li class="list-item"><a href="user-all-records-list.html" class="item-link">In process</a></li>
+                    <li class="list-item"><a href="user-all-records-list.html" class="item-link">Resolved</a></li>
+                    <li class="list-item"><a href="user-all-records-list.html" class="item-link">Rejected</a></li>
+                    <li class="list-item"><a href="user-all-records-list.html" class="item-link">All list</a></li>
+                </div>
+                <!-- <hr class="divide"> -->
+                <li class="list-item"><a href="user-create-intervention.html" class="item-link">Intervention</a></li>
+                <div class="sub-menus">
+                    <li class="list-item"><a href="user-draft-records-list.html" class="item-link">Draft</a></li>
+                    <li class="list-item"><a href="user-all-records-list.html" class="item-link">In process</a></li>
+                    <li class="list-item"><a href="user-all-records-list.html" class="item-link">Resolved</a></li>
+                    <li class="list-item"><a href="user-all-records-list.html" class="item-link">Rejected</a></li>
+                    <li class="list-item"><a href="user-all-records-list.html" class="item-link">All list</a></li>
+                </div>
+                <!-- <hr class="divide"> -->
+                <li class="list-item"><a href="user-sing-in.html" class="item-link">Sign out</a></li>
+            </ul>
+        </div>
+        <div class="sec-content">
+            <h1 class="medium-title dash-title"><span class="red-color">&#9872;</span>Red-Flah<span class="hint-text">&#10093;</span>Creation</h1>
+            <form action="" method="POST" class="dash-form">
+                <div class="form-col">
+                    <input type="text" placeholder="Red-Flad" class="dash-input input-disabled" disabled />
+                    <input type="text" placeholder="Title" class="dash-input" required />
+                    <label for="images" class="dash-label">Images</label>
+                    <input type="file" class="dash-input" multiple required />
+                    <label for="images" class="dash-label">Videos</label>
+                    <input type="file" class="dash-input" multiple required />
+                    <textarea rows="5" placeholder="Comment..." class="dash-input" required></textarea>
+                </div>
+                <div class="form-col the-map">
+                    <label for="images" class="dash-label">Choose Location:</label>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1020806.7308128022!2d29.31860949564187!3d-1.9421905312418037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19c29654e73840e3%3A0x7490b026cbcca103!2sRwanda!5e0!3m2!1sen!2srw!4v1572899478190!5m2!1sen!2srw" class="form-map" frameborder="0" allowfullscreen=""></iframe>
+                    <input type="submit" value="Save" class="dash-input dash-submit" />
+                </div>
+            </form>
+            <div class="dash-data">
+                <h1 class="medium-title dash-title">
+                    <span>Red-Flad List</span>
+                    <span class="records">233 records</span>
+                </h1>
+                <p class="table-th">
+                    <span class="table-td">Title</span>
+                    <span class="table-td">Comment</span>
+                    <span class="table-td">Date</span>
+                    <span class="table-td text-center">Action</span>
+                </p>
+
+                <div class="data-item">
+                    <div class="data-sumary">
+                        <p class="data-title hide-me">Title:</p>
+                        <p class="data-title to-change">Corruption in Traffic</p>
+                        <p class="data-content">corruption in Traffic ...</p>
+                        <p class="data-content">23 Sept 2019</p>
+                        <p class="data-actions container-flex">
+                            <a href="#" class="action">Edit</a>
+                            <a href="#" class="action">Delete</a>
+                            <button class="action more" onclick="//more_info()" >&#9660;</button>
+                        </p>
+                    </div>
+                    <div class="data-details hide-me">
+                        <p class="data-title"><strong>Title: </strong>corruption in Traffic</p>
+                        <p class="data-content to-hide">
+                            <strong>Status: </strong>
+                            [ <span class="in-draft">in draft</span>
+                            <span class="in-process">in process...</span>
+                            <span class="resolved">resolved</span>
+                            <span class="rejected">rejected</span> ]
+                        </p>
+                        <p class="data-content"><strong>Comment: </strong>corruption in Traffic ...</p>
+                        <p class="data-content"><strong>Location (Lat, Long): </strong>(234345, 34534534)</p>
+                        <p class="data-actions">
+                            <a href="record-details.html" class="action bottom-more">More info</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p class="copy-right">Copyright <span class="hint-text">&copy;</span> 2019 &#127757;Boadcaster</p>
+    </footer>
+    <script src="../js/script.js"></script>
+</body>
+</html>
