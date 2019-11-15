@@ -2,7 +2,7 @@
 Broadcaster enables any/every citizen to bring any form of corruption to the notice of appropriate authorities and the general public.
 
 # GitHub Pages
-    UI pages for a User Panel:
+    UI pages for a User Panel
     - Home page for sign-up or sign-in [Hompe](https://jajajaden01.github.io/Broadcaster/UI/pages/)
     - Once the user logs-out, their will back to this page [Sign-in](https://jajajaden01.github.io/Broadcaster/UI/pages/user-sing-in.html)
     - [Create a Red-flag](https://jajajaden01.github.io/Broadcaster/UI/pages/user-create-red-flag.html)
