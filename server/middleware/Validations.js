@@ -20,6 +20,22 @@ class Validations {
       });
     } else next();
   }
+
+  static userSignin(req, res, next) {
+    const schema = Joi.object().keys({
+      email: Joi.string().min(15).max(50).email()
+        .required(),
+      password: Joi.string().min(5).max(50).required(),
+    });
+
+    const { error } = schema.validate(req.body);
+    if (error) {
+      res.status(400).json({
+        status: res.statusCode,
+        error: error.details[0].message,
+      });
+    } else next();
+  }
 }
 
 export default Validations;
