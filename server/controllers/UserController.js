@@ -37,33 +37,39 @@ class UserController {
   }
 
   static signin(req, res) {
-    const userExist = aUser.getUserByEmail(req.body.email);
+    try {
+      const userExist = aUser.getUserByEmail(req.body.email);
+      const password = Bcrypt.decryt(req.body.password, userExist.password);
 
-    if (!userExist) {
-      return res.status(401).json({ status: res.statusCode, error: 'Incorect Email or Password' });
+      if (!userExist || !password) {
+        return res.status(401).json({ status: res.statusCode, error: 'Incorect Email or Password' });
+      }
+
+      const theToken = UserToken.generateToken({
+        id: userExist.Id,
+        email: userExist.Email,
+        userType: 'User',
+      });
+
+      return res.status(200).header('token', theToken).json({
+        status: res.statusCode,
+        message: 'User is successfully logged in',
+        data: {
+          token: theToken,
+          First_Name: userExist.fname,
+          Last_Name: userExist.lname,
+          Email: userExist.email,
+        },
+      });
+    } catch (error) {
+      if (error.message === 'data and hash arguments required') {
+        return res.status(401).json({ status: res.statusCode, error: 'Incorect Email or Password' });
+      }
+      return res.status(500).json({
+        status: res.statusCode,
+        error: error.message,
+      });
     }
-
-    const password = Bcrypt.decryt(req.body.password, userExist.password);
-    if (!password) {
-      return res.status(401).json({ status: res.statusCode, message: 'Incorect Email or Password' });
-    }
-
-    const theToken = UserToken.generateToken({
-      id: userExist.Id,
-      email: userExist.Email,
-      userType: 'User',
-    });
-
-    return res.status(200).header('Broadcaster-user-token', theToken).json({
-      status: res.statusCode,
-      message: 'User is successfully logged in',
-      data: {
-        token: theToken,
-        First_Name: userExist.fname,
-        Last_Name: userExist.lname,
-        Email: userExist.email,
-      },
-    });
   }
 }
 
