@@ -48,8 +48,10 @@ class Incident {
     return this.incidentObject();
   }
 
-  getIncidentById(id) {
-    const searchIncident = this.incidentTable.find((data) => String(data.id) === id);
+  getIncidentById(userId, id) {
+    const searchIncident = this.incidentTable.find(
+      (data) => (String(data.id) === id && data.createdBy === userId),
+    );
 
     if (searchIncident) return searchIncident;
 
