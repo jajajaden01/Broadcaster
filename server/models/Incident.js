@@ -25,9 +25,9 @@ class Incident {
       type: this.type,
       location: this.location,
       status: this.status,
+      comment: this.comment,
       images: this.images,
       videos: this.videos,
-      comment: this.comment,
     };
   }
 
@@ -68,6 +68,13 @@ class Incident {
 
   getIncidents() {
     return this.incidentTable.sort((data1, data2) => data2.id - data1.id);
+  }
+
+  getRedFlags(userId) {
+    const reds = this.incidentTable.filter((data) => (data.type === 'Red-Flag' && data.createdBy === userId));
+    if (reds.length) return reds.sort((data1, data2) => data2.id - data1.id);
+
+    return false;
   }
 }
 
