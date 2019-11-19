@@ -106,6 +106,21 @@ class Incident {
 
     return false;
   }
+
+  deleteRedFlag(userId, id) {
+    const redFlagToDelete = this.incidentTable.find(
+      (data) => (String(data.id) === id && data.createdBy === userId),
+    );
+
+    if (redFlagToDelete) {
+      const dataIndex = this.incidentTable.indexOf(redFlagToDelete);
+      this.incidentTable.splice(dataIndex, 1);
+
+      return redFlagToDelete;
+    }
+
+    return false;
+  }
 }
 
 export default Incident;
