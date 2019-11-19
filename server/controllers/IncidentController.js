@@ -49,6 +49,25 @@ class IncidentController {
       });
     }
   }
+
+  static viewaRedFlag(req, res) {
+    try {
+      const { userId } = req.body;
+      const { redFlagId } = req.params;
+      const aredFlag = anIncident.getIncidentById(userId, redFlagId);
+
+      if (!aredFlag) {
+        return res.status(404).json({ status: res.statusCode, message: 'Sorry! that red-flags not found.' });
+      }
+
+      return res.status(200).json({ status: res.statusCode, data: aredFlag });
+    } catch (err) {
+      return res.status(500).json({
+        status: res.statusCode,
+        error: err.message,
+      });
+    }
+  }
 }
 
 export default IncidentController;
