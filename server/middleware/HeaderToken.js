@@ -28,7 +28,6 @@ class HeaderToken {
     return res.status(401).json({
       status: res.statusCode,
       error: 'Sorry! You do not have access for this request',
-      message: req.headers.token,
     });
   }
 }
