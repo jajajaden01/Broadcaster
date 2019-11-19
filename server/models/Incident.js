@@ -92,6 +92,20 @@ class Incident {
 
     return false;
   }
+
+  editRedFlagComment(userId, id, comment) {
+    const redFlagToEdit = this.incidentTable.find(
+      (data) => (String(data.id) === id && data.createdBy === userId),
+    );
+    if (redFlagToEdit) {
+      const dataIndex = this.incidentTable.indexOf(redFlagToEdit);
+      redFlagToEdit.comment = comment;
+      this.incidentTable[dataIndex] = redFlagToEdit;
+      return redFlagToEdit;
+    }
+
+    return false;
+  }
 }
 
 export default Incident;
