@@ -68,6 +68,33 @@ class IncidentController {
       });
     }
   }
+
+  static updateRedFlagLocation(req, res) {
+    try {
+      const { redFlagId } = req.params;
+      const { location, userId } = req.body;
+      const locationUpdate = anIncident.editRedFlagLocation(userId, redFlagId, location);
+      if (locationUpdate) {
+        return res.status(200).json({
+          status: res.statusCode,
+          data: {
+            id: userId,
+            message: 'Updated red-flag record\'s location.',
+          },
+        });
+      }
+
+      return res.status(404).json({
+        status: res.statusCode,
+        data: 'Sorry! a red-flag\'s location to edit, not found.',
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: res.statusCode,
+        error: err.message,
+      });
+    }
+  }
 }
 
 export default IncidentController;

@@ -78,6 +78,20 @@ class Incident {
 
     return false;
   }
+
+  editRedFlagLocation(userId, id, location) {
+    const redFlagToEdit = this.incidentTable.find(
+      (data) => (String(data.id) === id && data.createdBy === userId),
+    );
+    if (redFlagToEdit) {
+      const dataIndex = this.incidentTable.indexOf(redFlagToEdit);
+      redFlagToEdit.location = location;
+      this.incidentTable[dataIndex] = redFlagToEdit;
+      return redFlagToEdit;
+    }
+
+    return false;
+  }
 }
 
 export default Incident;

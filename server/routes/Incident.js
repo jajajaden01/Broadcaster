@@ -8,5 +8,6 @@ const router = express.Router();
 router.post('/', Validations.validateFiles(), Validations.validateIncident, HeaderToken.isUser, IncidentController.createIncident);
 router.get('/', HeaderToken.isUser, IncidentController.viewRedFlags);
 router.get('/:redFlagId', HeaderToken.isUser, IncidentController.viewaRedFlag);
+router.patch('/:redFlagId/location', Validations.validateLocation, HeaderToken.isUser, IncidentController.updateRedFlagLocation);
 
 export default router;
