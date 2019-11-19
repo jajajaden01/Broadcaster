@@ -10,5 +10,6 @@ router.get('/', HeaderToken.isUser, IncidentController.viewRedFlags);
 router.get('/:redFlagId', HeaderToken.isUser, IncidentController.viewaRedFlag);
 router.patch('/:redFlagId/location', Validations.validateLocation, HeaderToken.isUser, IncidentController.updateRedFlagLocation);
 router.patch('/:redFlagId/comment', Validations.validateComment, HeaderToken.isUser, IncidentController.updateRedFlagComment);
+router.delete('/:redFlagId', HeaderToken.isUser, IncidentController.removeRedFlag);
 
 export default router;

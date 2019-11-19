@@ -78,7 +78,7 @@ class IncidentController {
         return res.status(200).json({
           status: res.statusCode,
           data: {
-            id: userId,
+            id: locationUpdate.id,
             message: 'Updated red-flag record\'s location.',
           },
         });
@@ -105,7 +105,7 @@ class IncidentController {
         return res.status(200).json({
           status: res.statusCode,
           data: {
-            id: userId,
+            id: commentUpdate.id,
             message: 'Updated red-flag record\'s comment.',
           },
         });
@@ -114,6 +114,33 @@ class IncidentController {
       return res.status(404).json({
         status: res.statusCode,
         data: 'Sorry! a red-flag\'s comment to edit, not found.',
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: res.statusCode,
+        error: err.message,
+      });
+    }
+  }
+
+  static removeRedFlag(req, res) {
+    try {
+      const { redFlagId } = req.params;
+      const { userId } = req.body;
+      const redFlagToRemove = anIncident.deleteRedFlag(userId, redFlagId);
+      if (redFlagToRemove) {
+        return res.status(200).json({
+          status: res.statusCode,
+          data: {
+            id: redFlagToRemove.id,
+            message: 'red-flag record has been deleted.',
+          },
+        });
+      }
+
+      return res.status(404).json({
+        status: res.statusCode,
+        data: 'Sorry! a red-flag\'s record to delete, not found.',
       });
     } catch (err) {
       return res.status(500).json({
