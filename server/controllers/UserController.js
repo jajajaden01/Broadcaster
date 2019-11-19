@@ -46,8 +46,8 @@ class UserController {
       }
 
       const theToken = UserToken.generateToken({
-        id: userExist.Id,
-        email: userExist.Email,
+        id: userExist.id,
+        email: userExist.email,
         userType: 'User',
       });
 
