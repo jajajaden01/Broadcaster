@@ -4,12 +4,11 @@ import multer from 'multer';
 class Validations {
   static userSignup(req, res, next) {
     const schema = Joi.object().keys({
-      fname: Joi.string().min(5).max(50).required(),
-      lname: Joi.string().min(5).max(50).required(),
-      email: Joi.string().min(15).max(50).email()
-        .required(),
-      phone: Joi.string().min(5).max(20).required(),
-      username: Joi.string().min(5).max(20).required(),
+      fname: Joi.string().max(50).required(),
+      lname: Joi.string().max(50).required(),
+      email: Joi.string().email().required(),
+      phone: Joi.string().required(),
+      username: Joi.string().max(20).required(),
       password: Joi.string().min(5).max(50).required(),
     });
 
@@ -24,8 +23,7 @@ class Validations {
 
   static userSignin(req, res, next) {
     const schema = Joi.object().keys({
-      email: Joi.string().min(15).max(50).email()
-        .required(),
+      email: Joi.string().email().required(),
       password: Joi.string().min(5).max(50).required(),
     });
 
