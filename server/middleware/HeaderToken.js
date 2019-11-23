@@ -14,7 +14,7 @@ class HeaderToken {
 
     jwt.verify(req.headers.token, process.env.SECRET_KEY, (err, result) => {
       if (err) {
-        res.status(401).json({
+        return res.status(401).json({
           status: res.statusCode,
           error: 'Invalid Token',
         });
