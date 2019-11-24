@@ -1,4 +1,4 @@
 node_modules
 .env
 package-lock.json
-.nyc_output
+.nyc_output/
