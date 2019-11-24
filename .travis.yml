@@ -9,3 +9,4 @@ script:
   - npm run test
 env:
   - process.env.SECRET_KEY=secrety_key
+after_success: npm run coveralls
