@@ -80,18 +80,32 @@ selectElement('.inter-sub').addEventListener('click', (e) => {
 */
 
 selectElement('.the-btn-add').addEventListener('click', () => {
-  selectElement('.model').classList.add('show-me');
-  selectElement('.model').classList.remove('hide-me');
+  selectElement('.model-add').classList.add('show-me');
+  selectElement('.model-add').classList.remove('hide-me');
+});
+
+selectElement('.the-btn-edit').addEventListener('click', () => {
+  selectElement('.model-edit').classList.add('show-me');
+  selectElement('.model-edit').classList.remove('hide-me');
 });
 
 selectElement('.the-span-closer').addEventListener('click', () => {
   selectElement('.model').classList.add('hide-me');
   selectElement('.model').classList.remove('show-me');
 });
+selectElement('.the-edit-closer').addEventListener('click', () => {
+  selectElement('.model-edit').classList.add('hide-me');
+  selectElement('.model-edit').classList.remove('show-me');
+});
 
 window.onclick = (e) => {
-  if (e.target === selectElement('.model')) {
-    selectElement('.model').classList.add('hide-me');
-    selectElement('.model').classList.remove('show-me');
+  if (e.target === selectElement('.model-add')) {
+    selectElement('.model-add').classList.add('hide-me');
+    selectElement('.model-add').classList.remove('show-me');
+  }
+
+  if (e.target === selectElement('.model-edit')) {
+    selectElement('.model-edit').classList.add('hide-me');
+    selectElement('.model-edit').classList.remove('show-me');
   }
 };

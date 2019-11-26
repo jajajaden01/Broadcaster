@@ -231,6 +231,15 @@ footer .copy-right{
 .item-link:focus{ background-color: #52b2d8; }
 .divide{ margin: .7em 0;}
 
+/* added cz of LFA cmnts */
+.menu-title{
+    background-color: #fff;
+    font-size: 1rem;
+    padding: .5em;
+    color: #428fad;
+    /* width: 100%; */
+}
+
 /* added */
 .sub-menus {
     border-bottom: 1px solid #fff;
@@ -309,6 +318,9 @@ footer .copy-right{
     margin: 0 auto;
     padding: 0;
     border: 0;
+}
+.input-select{
+    width: 92%;
 }
 
 /* --------------- Dash Content -------------- */
@@ -398,12 +410,11 @@ footer .copy-right{
     cursor: pointer;
 }
 .model{
-    /* display: none; */
     position: fixed;
     z-index: 105;
     left: 0;
     top: 0;
-    background: rgba(0,0,0,0.4);
+    background: rgba(12, 0, 0, 0.4);
     width: 100%;
     height: 100%;
     overflow: auto;
@@ -414,7 +425,9 @@ footer .copy-right{
 .model-content .dash-title .records{
     background: none;
     font-size: 1rem;
-    padding: 0 .4em;
+    width: 30px;
+    text-align: center;
+    padding: .3rem;
     border-radius: 3em;
     border: 2px solid #b33e2e;
     cursor: pointer;
@@ -422,9 +435,11 @@ footer .copy-right{
 .model .model-content{
     margin: 10% auto;
     width: 90%;
-    background: rgb(0, 0, 0, 0.4);
+    background-color: #4d9bb9; /* #52b2d8 */
+    /* background: rgb(0, 0, 0, 0.4); */
     padding: 1%;
-    border-radius: 1rem;
+    padding-left: 2.5%;
+    border-radius: 0.5rem;
 }
 
 

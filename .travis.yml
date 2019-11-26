@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "stable"
+install: npm install
+cache:
+  directories:
+  - node_modules
+script:
+  - npm run test
+env:
+  - process.env.SECRET_KEY=secrety_key
+after_success: npm run coveralls
