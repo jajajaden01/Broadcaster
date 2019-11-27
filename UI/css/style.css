@@ -359,6 +359,8 @@ footer .copy-right{
     text-align: center;
     padding: 0;
     line-height: 2em;
+    font-size: 1rem;
+    border-radius: .2rem;
 }
 .action:hover{ background: #52b2d8;}
 .bottom-more{ padding: .2em;}
