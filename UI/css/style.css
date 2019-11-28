@@ -320,6 +320,16 @@ footer .copy-right{
     border: 0;
 }
 .input-select{
+    /* appearance: none; */
+    /* -webkit-user-select: none; */
+    /* -webkit-user-select: text; */
+    /* -webkit-user-select: inherit; */
+    /* -webkit-user-select: initial; */
+    /* -webkit-user-select: unset; */
+    /* -webkit-padding-start: .4em; */
+    /* -webkit-padding-end: 20px; */
+
+    -webkit-user-select: auto;
     width: 92%;
 }
 
