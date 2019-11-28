@@ -19,10 +19,16 @@ class HeaderToken {
           error: 'Invalid Token',
         });
       }
-      if (result.userType === 'User') {
-        req.body.userId = result.id;
-        next();
+
+      if (result.userType !== 'User') {
+        return res.status(401).json({
+          status: res.statusCode,
+          error: 'Sorry! You do not have access for this request',
+        });
       }
+
+      if (result.userType === 'User') req.userSignedIn = result;
+      return next();
     });
 
     return res.status(401).json({

@@ -6,8 +6,10 @@ const anIncident = new Incident();
 class IncidentController {
   static createIncident(req, res) {
     const {
-      title, type, comment, location, userId,
+      title, type, comment, location,
     } = req.body;
+
+    const userId = req.userSignedIn.id;
 
     let { images } = req.files;
     let { videos } = req.files;
@@ -34,7 +36,7 @@ class IncidentController {
 
   static viewRedFlags(req, res) {
     try {
-      const { userId } = req.body;
+      const userId = req.userSignedIn.id;
       const redFlags = anIncident.getRedFlags(userId);
 
       if (!redFlags) {
@@ -52,7 +54,7 @@ class IncidentController {
 
   static viewaRedFlag(req, res) {
     try {
-      const { userId } = req.body;
+      const userId = req.userSignedIn.id;
       const { redFlagId } = req.params;
       const aredFlag = anIncident.getIncidentById(userId, redFlagId);
 
@@ -72,7 +74,8 @@ class IncidentController {
   static updateRedFlagLocation(req, res) {
     try {
       const { redFlagId } = req.params;
-      const { location, userId } = req.body;
+      const { location } = req.body;
+      const userId = req.userSignedIn.id;
       const locationUpdate = anIncident.editRedFlagLocation(userId, redFlagId, location);
       if (locationUpdate) {
         return res.status(200).json({
@@ -99,7 +102,8 @@ class IncidentController {
   static updateRedFlagComment(req, res) {
     try {
       const { redFlagId } = req.params;
-      const { comment, userId } = req.body;
+      const { comment } = req.body;
+      const userId = req.userSignedIn.id;
       const commentUpdate = anIncident.editRedFlagComment(userId, redFlagId, comment);
       if (commentUpdate) {
         return res.status(200).json({
@@ -126,7 +130,7 @@ class IncidentController {
   static removeRedFlag(req, res) {
     try {
       const { redFlagId } = req.params;
-      const { userId } = req.body;
+      const userId = req.userSignedIn.id;
       const redFlagToRemove = anIncident.deleteRedFlag(userId, redFlagId);
       if (redFlagToRemove) {
         return res.status(200).json({
