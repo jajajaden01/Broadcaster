@@ -19,10 +19,8 @@ class HeaderToken {
           error: 'Invalid Token',
         });
       }
-      if (result.userType === 'User') {
-        req.body.userId = result.id;
-        next();
-      }
+      if (result.userType === 'User') req.userSignedIn = result;
+      return next();
     });
 
     return res.status(401).json({
