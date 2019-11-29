@@ -135,4 +135,19 @@ describe('Testing an endpoint for updating Red-Flag status as an admin', () => {
         return done();
       });
   });
+
+  it('should return 401 http status code on Invalid Token', (done) => {
+    chai.request(app)
+      .patch(`/api/v1/admin-panel/${1}/status`)
+      .set('token', 'bad-token')
+      .send({ status: 'solved' })
+      .end((err, res) => {
+        if (err) return done(err);
+
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('status').equals(401).that.is.a('number');
+        expect(res.body).to.have.property('error').equals('Invalid Token').that.is.a('string');
+        return done();
+      });
+  });
 });
