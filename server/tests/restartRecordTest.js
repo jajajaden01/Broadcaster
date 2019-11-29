@@ -74,4 +74,18 @@ describe('Testing an endpoint for updating Red-Flag status as a user', () => {
         return done();
       });
   });
+
+  it('should return 404 http status code on Bad request', (done) => {
+    chai.request(app)
+      .patch(`/api/v1/red-flags/${1}/restart`)
+      .set('token', user1Token)
+      .end((err, res) => {
+        if (err) return done(err);
+
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('status').equals(404).that.is.a('number');
+        expect(res.body).to.have.property('error').equals('Sorry! a red-flag not found.').that.is.a('string');
+        return done();
+      });
+  });
 });
