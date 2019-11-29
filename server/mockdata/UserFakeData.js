@@ -79,6 +79,14 @@ class UserFakeData {
 
     const verifyAdmin1 = jwt.verify(admin1Token, process.env.SECRET_KEY);
 
+    const readlAdminToken = jwt.sign({
+      id: 1,
+      email: 'kante@gmail.com',
+      userType: 'Admin',
+    }, process.env.SECRET_KEY);
+
+    const verifyRealAdmin = jwt.verify(admin1Token, process.env.SECRET_KEY);
+
     return {
       user1Token,
       user2Token,
@@ -86,6 +94,8 @@ class UserFakeData {
       verifyUser2,
       admin1Token,
       verifyAdmin1,
+      readlAdminToken,
+      verifyRealAdmin,
     };
   }
 }
