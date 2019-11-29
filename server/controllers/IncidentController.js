@@ -153,6 +153,60 @@ class IncidentController {
       });
     }
   }
+
+  static changeStatus(req, res) {
+    try {
+      const { redFlagId } = req.params;
+      const { status } = req.body;
+      const updatedIncident = anIncident.changeIncidentStatus(redFlagId, status);
+      if (updatedIncident) {
+        return res.status(201).json({
+          status: res.statusCode,
+          data: {
+            id: updatedIncident.id,
+            message: `Red-flag has been ${status}.`,
+          },
+        });
+      }
+
+      return res.status(404).json({
+        status: res.statusCode,
+        error: 'Sorry! a red-flag not found.',
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: res.statusCode,
+        error: err.message,
+      });
+    }
+  }
+
+  static restartRedFlag(req, res) {
+    try {
+      const { redFlagId } = req.params;
+      const userId = req.userSignedIn.id;
+      const restartRecord = anIncident.restartIncident(userId, redFlagId);
+      if (restartRecord) {
+        return res.status(201).json({
+          status: res.statusCode,
+          data: {
+            id: restartRecord.id,
+            message: 'The Status of a red-flag has been restarted.',
+          },
+        });
+      }
+
+      return res.status(404).json({
+        status: res.statusCode,
+        error: 'Sorry! a red-flag not found.',
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: res.statusCode,
+        error: err.message,
+      });
+    }
+  }
 }
 
 export default IncidentController;

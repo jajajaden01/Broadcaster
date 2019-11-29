@@ -81,7 +81,7 @@ class Incident {
 
   editRedFlagLocation(userId, id, location) {
     const redFlagToEdit = this.incidentTable.find(
-      (data) => (String(data.id) === id && data.createdBy === userId),
+      (data) => (String(data.id) === id && data.createdBy === userId && data.status === 'draft'),
     );
     if (redFlagToEdit) {
       const dataIndex = this.incidentTable.indexOf(redFlagToEdit);
@@ -95,7 +95,7 @@ class Incident {
 
   editRedFlagComment(userId, id, comment) {
     const redFlagToEdit = this.incidentTable.find(
-      (data) => (String(data.id) === id && data.createdBy === userId),
+      (data) => (String(data.id) === id && data.createdBy === userId && data.status === 'draft'),
     );
     if (redFlagToEdit) {
       const dataIndex = this.incidentTable.indexOf(redFlagToEdit);
@@ -109,7 +109,7 @@ class Incident {
 
   deleteRedFlag(userId, id) {
     const redFlagToDelete = this.incidentTable.find(
-      (data) => (String(data.id) === id && data.createdBy === userId),
+      (data) => (String(data.id) === id && data.createdBy === userId && data.status === 'draft'),
     );
 
     if (redFlagToDelete) {
@@ -117,6 +117,34 @@ class Incident {
       this.incidentTable.splice(dataIndex, 1);
 
       return redFlagToDelete;
+    }
+
+    return false;
+  }
+
+  changeIncidentStatus(id, status) {
+    const redFlagToChange = this.incidentTable.find(
+      (data) => (String(data.id) === id && data.status === 'draft'),
+    );
+    if (redFlagToChange) {
+      const dataIndex = this.incidentTable.indexOf(redFlagToChange);
+      redFlagToChange.status = status;
+      this.incidentTable[dataIndex] = redFlagToChange;
+      return redFlagToChange;
+    }
+
+    return false;
+  }
+
+  restartIncident(userId, id) {
+    const redFlagToChange = this.incidentTable.find(
+      (data) => (String(data.id) === id && data.status !== 'draft' && data.createdBy === userId),
+    );
+    if (redFlagToChange) {
+      const dataIndex = this.incidentTable.indexOf(redFlagToChange);
+      redFlagToChange.status = 'draft';
+      this.incidentTable[dataIndex] = redFlagToChange;
+      return redFlagToChange;
     }
 
     return false;

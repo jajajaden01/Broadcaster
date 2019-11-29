@@ -13,6 +13,9 @@ Broadcaster enables any/every citizen to bring any form of corruption to the not
 - User can update a comment of a red-flag
 - User can update a location of a red-flag
 - User can delete a red-flag
+- User can restart his/her red-flag
+- Admin can sign in
+- Admin can change a status of a red-flag
 
 ## Getting Started
 To get started with this app you have to follow all instruction below carefully and implement.
@@ -39,6 +42,7 @@ Make sure that you have cloned this Repo to your local machine
 **API endpoints with no authentication**
 - POST `api/v1/auth/signup` User Sign up.
 - POST  `api/v1/auth/signin` User Sign in.
+- POST  `api/v1/admin-panel/signin` Admin Sign in.
 
 **API endpoints with no authentication**
 - POST `api/v1/red-flags` Create a red-flag
@@ -47,6 +51,8 @@ Make sure that you have cloned this Repo to your local machine
 - PATCH `api/v1/red-flags/:red-flag-id/comment` Modify a red-flag's comment
 - PATCH `api/v1/red-flags/:red-flag-id/location` Modify a red-flag's location
 - DELETE `api/v1/red-flags/:red-flag-id` Delete a red-flag
+- PATCH `api/v1/red-flags/:red-flag-id/restart` Modify a red-flag's status
+- PATCH `api/v1/admin-panel/:red-flag-id/status` Modify a red-flag's status
 
 ## GitHub Pages
 - link [Broadcaster web](https://jajajaden01.github.io/Broadcaster/UI/pages/)
@@ -54,8 +60,7 @@ Make sure that you have cloned this Repo to your local machine
 ### UI pages for a User Panel
 - Home page for sign-up or sign-in [link](https://jajajaden01.github.io/Broadcaster/UI/pages/)
 - Once the user logs-out, their will back to this page Sign-in [link](https://jajajaden01.github.io/Broadcaster/UI/pages/user-sing-in.html)
-- Create a Red-flag [link](https://jajajaden01.github.io/Broadcaster/UI/pages/user-create-red-flag.html)
-- Create an Intervention [link](https://jajajaden01.github.io/Broadcaster/UI/pages/user-create-intervention.html)
+- Create an incident [link](https://jajajaden01.github.io/Broadcaster/UI/pages/user-create-incident.html)
 - Draft list of Red-flag or Intervention [link](https://jajajaden01.github.io/Broadcaster/UI/pages/user-draft-records-list.html)
 - List of Records that are (in-process, reject or all records) for Red-flag or Intervention [link](https://jajajaden01.github.io/Broadcaster/UI/pages/user-all-records-list.html)
 
@@ -81,8 +86,6 @@ Make sure that you have cloned this Repo to your local machine
 
 ## DOCUMENTATION
   link: [API documentation with POSTMAN](https://documenter.getpostman.com/preview/8081802-bccb65ab-4a0a-4d9e-a6c2-6aa80f576641?versionTag=latest&apiName=CURRENT&version=latest&top-bar=ffffff&right-sidebar=303030&highlight=ef5b25)
-  
-  link: [API documentation with Swagger-UI]()
 
 ## Pivot Tracker Stories
 [Project Stories](https://www.pivotaltracker.com/n/projects/2411865)
