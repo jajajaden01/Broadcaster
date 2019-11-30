@@ -16,55 +16,46 @@ const {
 const aRedFlag = IncidentFakeData.saveRedFlag();
 const redFlagFiles = IncidentFakeData.saveRedFlagFiles();
 
-describe('Testing an endpoint for deleting a Red-Flag', () => {
-  before((done) => {
+describe('TEST 08: Testing an endpoint for Deleting a Red-Flag', () => {
+  it('should return 201 http status code on success. after creating the 2nd record', (done) => {
     chai.request(app)
       .post('/api/v1/red-flags')
       .set('token', user1Token)
       .type('form')
       .attach('images', fs.readFileSync(redFlagFiles.image1Path), redFlagFiles.image1)
+      .attach('images', fs.readFileSync(redFlagFiles.image2Path), redFlagFiles.image2)
       .attach('videos', fs.readFileSync(redFlagFiles.video1Path), redFlagFiles.video1)
+      .attach('videos', fs.readFileSync(redFlagFiles.video2Path), redFlagFiles.video2)
       .field('title', aRedFlag.title)
       .field('type', aRedFlag.type)
+      .field('status', aRedFlag.pendingStatus)
       .field('comment', aRedFlag.comment)
-      .field('location', aRedFlag.location)
+      .field('lat', aRedFlag.lat)
+      .field('long', aRedFlag.long)
       .end(() => {
         done();
       });
   });
-
-  it('should return 403 http status code on undefined token with no body', (done) => {
+  it('should return 200 http status code on a deleted record', (done) => {
     chai.request(app)
-      .delete(`/api/v1/red-flags/${1}`)
-      .end((err, res) => {
-        if (err) return done(err);
-
-        expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('status').equals(403).that.is.a('number');
-        expect(res.body).to.have.property('error').equals('Sorry! You have to Sign-in').that.is.a('string');
-        return done();
-      });
-  });
-
-  it('should return 403 http status code on undefined token with empty body', (done) => {
-    chai.request(app)
-      .delete(`/api/v1/red-flags/${1}`)
-      .send()
-      .end((err, res) => {
-        if (err) return done(err);
-
-        expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('status').equals(403).that.is.a('number');
-        expect(res.body).to.have.property('error').equals('Sorry! You have to Sign-in').that.is.a('string');
-        return done();
-      });
-  });
-
-  it('should return 404 http status code on empty body and valid token', (done) => {
-    chai.request(app)
-      .delete(`/api/v1/red-flags/${1}`)
+      .delete(`/api/v1/red-flags/${2}`)
       .set('token', user1Token)
-      .send({ location: 'sdfsfgdfg' })
+      .end((err, res) => {
+        if (err) return done(err);
+
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('status').equals(200).that.is.a('number');
+        expect(res.body).to.have.property('data').that.is.a('object');
+        expect(res.body).to.have.property('data').that.includes.property('id').that.is.a('number');
+        expect(res.body).to.have.property('data').that.includes.property('message').equals('red-flag record has been deleted.').that.is.a('string');
+        return done();
+      });
+  });
+
+  it('should return 404 http status code on a not found record', (done) => {
+    chai.request(app)
+      .delete(`/api/v1/red-flags/${0}`)
+      .set('token', user1Token)
       .end((err, res) => {
         if (err) return done(err);
 
@@ -75,26 +66,23 @@ describe('Testing an endpoint for deleting a Red-Flag', () => {
       });
   });
 
-  it('should return 404 http status code on valid token with somthing in body', (done) => {
+  it('should return 403 http status code on undefined token', (done) => {
     chai.request(app)
-      .delete(`/api/v1/red-flags/${1}`)
-      .set('token', user1Token)
-      .send({ location: 'sdfsfgdfg' })
+      .delete(`/api/v1/red-flags/${2}`)
       .end((err, res) => {
         if (err) return done(err);
 
         expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('status').equals(404).that.is.a('number');
-        expect(res.body).to.have.property('data').equals('Sorry! a red-flag\'s record to delete, not found.').that.is.a('string');
+        expect(res.body).to.have.property('status').equals(403).that.is.a('number');
+        expect(res.body).to.have.property('error').equals('Sorry! You have to Sign-in').that.is.a('string');
         return done();
       });
   });
 
   it('should return 401 http status code on invalid token', (done) => {
     chai.request(app)
-      .delete(`/api/v1/red-flags/${1}`)
+      .delete(`/api/v1/red-flags/${2}`)
       .set('token', 'bad-token')
-      .send({ location: 'sdfsdf' })
       .end((err, res) => {
         if (err) return done(err);
 
@@ -107,7 +95,7 @@ describe('Testing an endpoint for deleting a Red-Flag', () => {
 
   it('should return 401 http status code on unallowed access', (done) => {
     chai.request(app)
-      .delete(`/api/v1/red-flags/${1}`)
+      .delete(`/api/v1/red-flags/${2}`)
       .set('token', admin1Token)
       .end((err, res) => {
         if (err) return done(err);

@@ -6,8 +6,10 @@ const anIncident = new Incident();
 class IncidentController {
   static createIncident(req, res) {
     const {
-      title, type, comment, location,
+      title, type, comment, lat, long, status,
     } = req.body;
+
+    const location = `${lat},${long}`;
 
     const userId = req.userSignedIn.id;
 
@@ -20,12 +22,14 @@ class IncidentController {
     const dataExist = anIncident.getIncidentExisted(title, comment);
     if (dataExist) return res.status(409).json({ status: res.statusCode, error: 'Sorry! this Incident already exist.' });
 
-    const isSaved = anIncident.saveIncident(title, type, comment, location, 'draft', images, videos, Number(userId));
+    const isSaved = anIncident.saveIncident(
+      title, type, comment, location, status, images, videos, Number(userId),
+    );
     if (!isSaved) {
       return res.status(500).json({ status: res.statusCode, error: 'Sorry! we got a Server Error' });
     }
 
-    return res.status(200).json({
+    return res.status(201).json({
       status: res.statusCode,
       data: {
         id: isSaved.id,
@@ -59,7 +63,7 @@ class IncidentController {
       const aredFlag = anIncident.getIncidentById(userId, redFlagId);
 
       if (!aredFlag) {
-        return res.status(404).json({ status: res.statusCode, message: 'Sorry! that red-flags not found.' });
+        return res.status(404).json({ status: res.statusCode, message: 'Sorry! that red-flag not found.' });
       }
 
       return res.status(200).json({ status: res.statusCode, data: aredFlag });
@@ -74,8 +78,12 @@ class IncidentController {
   static updateRedFlagLocation(req, res) {
     try {
       const { redFlagId } = req.params;
-      const { location } = req.body;
+      const { lat, long } = req.body;
+
+      const location = `${lat},${long}`;
+
       const userId = req.userSignedIn.id;
+
       const locationUpdate = anIncident.editRedFlagLocation(userId, redFlagId, location);
       if (locationUpdate) {
         return res.status(200).json({
@@ -160,7 +168,7 @@ class IncidentController {
       const { status } = req.body;
       const updatedIncident = anIncident.changeIncidentStatus(redFlagId, status);
       if (updatedIncident) {
-        return res.status(201).json({
+        return res.status(200).json({
           status: res.statusCode,
           data: {
             id: updatedIncident.id,
@@ -187,11 +195,38 @@ class IncidentController {
       const userId = req.userSignedIn.id;
       const restartRecord = anIncident.restartIncident(userId, redFlagId);
       if (restartRecord) {
-        return res.status(201).json({
+        return res.status(200).json({
           status: res.statusCode,
           data: {
             id: restartRecord.id,
             message: 'The Status of a red-flag has been restarted.',
+          },
+        });
+      }
+
+      return res.status(404).json({
+        status: res.statusCode,
+        error: 'Sorry! a red-flag not found.',
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: res.statusCode,
+        error: err.message,
+      });
+    }
+  }
+
+  static putInPending(req, res) {
+    try {
+      const { redFlagId } = req.params;
+      const userId = req.userSignedIn.id;
+      const restartRecord = anIncident.putIncidentInPending(userId, redFlagId);
+      if (restartRecord) {
+        return res.status(200).json({
+          status: res.statusCode,
+          data: {
+            id: restartRecord.id,
+            message: 'This red-flag has been added in pending state.',
           },
         });
       }

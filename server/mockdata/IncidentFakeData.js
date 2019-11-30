@@ -5,9 +5,15 @@ class IncidentFakeData {
   static saveRedFlag() {
     return {
       title: faker.name.title(),
-      type: 'red-flag',
-      location: 'Unknow place, Kigali city, Rwanda',
+      type: 'Red-Flag',
+      lat: '8675',
+      long: '12344',
       comment: 'Hello Africa, Please we Need to stop Corruption',
+      draftStatus: 'draft',
+      pendingStatus: 'pending',
+      editLat: '86752111111',
+      editLong: '1234426666666',
+      editComment: 'Hello Africa, Please we Need to stop Corruption, check update',
     };
   }
 
