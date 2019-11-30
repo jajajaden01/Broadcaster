@@ -41,7 +41,9 @@ class Validations {
       title: Joi.string().min(10).required(),
       type: Joi.string().min(5).required(),
       comment: Joi.string().min(15).required(),
-      location: Joi.string().min(15).required(),
+      lat: Joi.number().required(),
+      long: Joi.number().required(),
+      status: Joi.string().valid('draft', 'pending').required(),
     });
 
     try {
@@ -98,7 +100,8 @@ class Validations {
 
   static validateLocation(req, res, next) {
     const schema = Joi.object().keys({
-      location: Joi.string().min(10).required(),
+      lat: Joi.string().min(1).required(),
+      long: Joi.string().min(1).required(),
     });
 
     try {
@@ -140,7 +143,7 @@ class Validations {
 
   static validateStatus(req, res, next) {
     const schema = Joi.object().keys({
-      status: Joi.string().min(5).required(),
+      status: Joi.string().valid('solved', 'rejected').required(),
     });
 
     try {

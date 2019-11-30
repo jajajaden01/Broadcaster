@@ -81,7 +81,7 @@ class Incident {
 
   editRedFlagLocation(userId, id, location) {
     const redFlagToEdit = this.incidentTable.find(
-      (data) => (String(data.id) === id && data.createdBy === userId && data.status === 'draft'),
+      (data) => (String(data.id) === id && data.createdBy === userId && (data.status === 'draft' || data.status === 'pending')),
     );
     if (redFlagToEdit) {
       const dataIndex = this.incidentTable.indexOf(redFlagToEdit);
@@ -95,7 +95,7 @@ class Incident {
 
   editRedFlagComment(userId, id, comment) {
     const redFlagToEdit = this.incidentTable.find(
-      (data) => (String(data.id) === id && data.createdBy === userId && data.status === 'draft'),
+      (data) => (String(data.id) === id && data.createdBy === userId && (data.status === 'draft' || data.status === 'pending')),
     );
     if (redFlagToEdit) {
       const dataIndex = this.incidentTable.indexOf(redFlagToEdit);
@@ -109,7 +109,7 @@ class Incident {
 
   deleteRedFlag(userId, id) {
     const redFlagToDelete = this.incidentTable.find(
-      (data) => (String(data.id) === id && data.createdBy === userId && data.status === 'draft'),
+      (data) => (String(data.id) === id && data.createdBy === userId && (data.status === 'draft' || data.status === 'pending')),
     );
 
     if (redFlagToDelete) {
@@ -124,7 +124,7 @@ class Incident {
 
   changeIncidentStatus(id, status) {
     const redFlagToChange = this.incidentTable.find(
-      (data) => (String(data.id) === id && data.status === 'draft'),
+      (data) => (String(data.id) === id && data.status === 'pending'),
     );
     if (redFlagToChange) {
       const dataIndex = this.incidentTable.indexOf(redFlagToChange);
@@ -145,6 +145,20 @@ class Incident {
       redFlagToChange.status = 'draft';
       this.incidentTable[dataIndex] = redFlagToChange;
       return redFlagToChange;
+    }
+
+    return false;
+  }
+
+  putIncidentInPending(userId, id) {
+    const incidentToChange = this.incidentTable.find(
+      (data) => (String(data.id) === id && data.status === 'draft' && data.createdBy === userId),
+    );
+    if (incidentToChange) {
+      const dataIndex = this.incidentTable.indexOf(incidentToChange);
+      incidentToChange.status = 'pending';
+      this.incidentTable[dataIndex] = incidentToChange;
+      return incidentToChange;
     }
 
     return false;

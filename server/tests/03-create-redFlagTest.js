@@ -16,8 +16,8 @@ const {
 const aRedFlag = IncidentFakeData.saveRedFlag();
 const redFlagFiles = IncidentFakeData.saveRedFlagFiles();
 
-describe('Testing an endpoint of creating a Red-Flag', () => {
-  it('should return 200 http status code on success.', (done) => {
+describe('TEST 03: Testing an endpoint of creating a Red-Flag', () => {
+  it('should return 201 http status code on success.', (done) => {
     chai.request(app)
       .post('/api/v1/red-flags')
       .set('token', user1Token)
@@ -28,16 +28,18 @@ describe('Testing an endpoint of creating a Red-Flag', () => {
       .attach('videos', fs.readFileSync(redFlagFiles.video2Path), redFlagFiles.video2)
       .field('title', aRedFlag.title)
       .field('type', aRedFlag.type)
+      .field('status', aRedFlag.pendingStatus)
       .field('comment', aRedFlag.comment)
-      .field('location', aRedFlag.location)
+      .field('lat', aRedFlag.lat)
+      .field('long', aRedFlag.long)
       .end((err, res) => {
         if (err) return done(err);
 
         expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('status').equals(200).that.is.a('number');
+        expect(res.body).to.have.property('status').equals(201).that.is.a('number');
         expect(res.body).to.have.property('data').that.is.a('object');
         expect(res.body).to.have.property('data').that.includes.property('id').that.is.a('number');
-        expect(res.body).to.have.property('data').that.includes.property('message').equals('Created red-flag record').that.is.a('string');
+        expect(res.body).to.have.property('data').that.includes.property('message').equals(`Created ${aRedFlag.type} record`).that.is.a('string');
         return done();
       });
   });
@@ -51,8 +53,10 @@ describe('Testing an endpoint of creating a Red-Flag', () => {
       .attach('videos', fs.readFileSync(redFlagFiles.video1Path), redFlagFiles.video1)
       .field('title', aRedFlag.title)
       .field('type', aRedFlag.type)
+      .field('status', aRedFlag.pendingStatus)
       .field('comment', aRedFlag.comment)
-      .field('location', aRedFlag.location)
+      .field('lat', aRedFlag.lat)
+      .field('long', aRedFlag.long)
       .end((err, res) => {
         if (err) return done(err);
 
@@ -70,10 +74,6 @@ describe('Testing an endpoint of creating a Red-Flag', () => {
       .type('form')
       .attach('images', fs.readFileSync(redFlagFiles.image1Path), redFlagFiles.image1)
       .attach('videos', fs.readFileSync(redFlagFiles.video1Path), redFlagFiles.video1)
-      .field('title', '')
-      .field('type', aRedFlag.type)
-      .field('comment', aRedFlag.comment)
-      .field('location', aRedFlag.location)
       .end((err, res) => {
         if (err) return done(err);
 
@@ -93,8 +93,10 @@ describe('Testing an endpoint of creating a Red-Flag', () => {
       .attach('videos', fs.readFileSync(redFlagFiles.video1Path), redFlagFiles.video1)
       .field('title', aRedFlag.title)
       .field('type', aRedFlag.type)
+      .field('status', aRedFlag.pendingStatus)
       .field('comment', aRedFlag.comment)
-      .field('location', aRedFlag.location)
+      .field('lat', aRedFlag.lat)
+      .field('long', aRedFlag.long)
       .end((err, res) => {
         if (err) return done(err);
 
@@ -114,8 +116,10 @@ describe('Testing an endpoint of creating a Red-Flag', () => {
       .attach('videos', fs.readFileSync(redFlagFiles.video1Path), redFlagFiles.video1)
       .field('title', aRedFlag.title)
       .field('type', aRedFlag.type)
+      .field('status', aRedFlag.pendingStatus)
       .field('comment', aRedFlag.comment)
-      .field('location', aRedFlag.location)
+      .field('lat', aRedFlag.lat)
+      .field('long', aRedFlag.long)
       .end((err, res) => {
         if (err) return done(err);
 
@@ -134,8 +138,10 @@ describe('Testing an endpoint of creating a Red-Flag', () => {
       .attach('videos', fs.readFileSync(redFlagFiles.video1Path), redFlagFiles.video1)
       .field('title', aRedFlag.title)
       .field('type', aRedFlag.type)
+      .field('status', aRedFlag.pendingStatus)
       .field('comment', aRedFlag.comment)
-      .field('location', aRedFlag.location)
+      .field('lat', aRedFlag.lat)
+      .field('long', aRedFlag.long)
       .end((err, res) => {
         if (err) return done(err);
 

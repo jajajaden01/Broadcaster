@@ -56,7 +56,7 @@ class UserFakeData {
 
   static getUserToken() {
     const user1Token = jwt.sign({
-      userId: 1,
+      id: 1,
       email: `user1${faker.internet.email()}`,
       userType: 'User',
     }, process.env.SECRET_KEY);
@@ -64,7 +64,7 @@ class UserFakeData {
     const verifyUser1 = jwt.verify(user1Token, process.env.SECRET_KEY);
 
     const user2Token = jwt.sign({
-      userId: 2,
+      id: 2,
       email: `user2${faker.internet.email()}`,
       userType: 'User',
     }, process.env.SECRET_KEY);
@@ -72,7 +72,7 @@ class UserFakeData {
     const verifyUser2 = jwt.verify(user2Token, process.env.SECRET_KEY);
 
     const admin1Token = jwt.sign({
-      userId: 1,
+      id: 1,
       email: `admin1${faker.internet.email()}`,
       userType: 'Admin',
     }, process.env.SECRET_KEY);
@@ -80,7 +80,7 @@ class UserFakeData {
     const verifyAdmin1 = jwt.verify(admin1Token, process.env.SECRET_KEY);
 
     const readlAdminToken = jwt.sign({
-      id: 1,
+      id: 2,
       email: 'kante@gmail.com',
       userType: 'Admin',
     }, process.env.SECRET_KEY);

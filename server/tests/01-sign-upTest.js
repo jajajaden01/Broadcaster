@@ -10,7 +10,7 @@ const { expect } = chai;
 const aUser = new UserFakeData();
 let thatUser = aUser.saveFakeUser();
 
-describe('Test Sign-Up endpoint', () => {
+describe('TEST 01: Test Sign-Up endpoint', () => {
   it('should return 201 http status code on success', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
