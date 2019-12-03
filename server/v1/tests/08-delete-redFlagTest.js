@@ -3,7 +3,7 @@ import chaiHttp from 'chai-http';
 import fs from 'fs';
 import UserFakeData from '../mockdata/UserFakeData';
 import IncidentFakeData from '../mockdata/IncidentFakeData';
-import app from '../app';
+import app from '../../app';
 
 chai.use(chaiHttp);
 

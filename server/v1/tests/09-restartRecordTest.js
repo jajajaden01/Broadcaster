@@ -3,20 +3,20 @@ import chaiHttp from 'chai-http';
 import fs from 'fs';
 import UserFakeData from '../mockdata/UserFakeData';
 import IncidentFakeData from '../mockdata/IncidentFakeData';
-import app from '../app';
+import app from '../../app';
 
 chai.use(chaiHttp);
 
 const { expect } = chai;
 
 const {
-  user1Token, user2Token, admin1Token,
+  user1Token, readlAdminToken,
 } = UserFakeData.getUserToken();
 
 const aRedFlag = IncidentFakeData.saveRedFlag();
 const redFlagFiles = IncidentFakeData.saveRedFlagFiles();
 
-describe('TEST 04: Testing an endpoint of retrieving all Red-Flag for a user', () => {
+describe('TEST 09: Testing an endpoint for updating Red-Flag status as a user', () => {
   it('should return 201 http status code on success. after creating the 2nd record', (done) => {
     chai.request(app)
       .post('/api/v1/red-flags')
@@ -37,37 +37,39 @@ describe('TEST 04: Testing an endpoint of retrieving all Red-Flag for a user', (
       });
   });
 
-  it('should return 200 http status code when records found', (done) => {
+  it('should return 200 http status code on updated status about restarting an incident', (done) => {
     chai.request(app)
-      .get('/api/v1/red-flags')
+      .patch(`/api/v1/red-flags/${4}/restart`)
       .set('token', user1Token)
       .end((err, res) => {
         if (err) return done(err);
 
         expect(res.body).to.be.an('object');
         expect(res.body).to.have.property('status').equals(200).that.is.a('number');
-        expect(res.body).to.have.property('data').that.is.a('array');
+        expect(res.body).to.have.property('data').that.is.a('object');
+        expect(res.body).to.have.property('data').that.includes.property('id').that.is.a('number');
+        expect(res.body).to.have.property('data').that.includes.property('message').equals('The Status of a red-flag has been restarted.').that.is.a('string');
         return done();
       });
   });
 
-  it('should return 404 http status code on No Found red-flags.', (done) => {
+  it('should return 404 http status code on No found record to update it status', (done) => {
     chai.request(app)
-      .get('/api/v1/red-flags')
-      .set('token', user2Token)
+      .patch(`/api/v1/red-flags/${0}/restart`)
+      .set('token', user1Token)
       .end((err, res) => {
         if (err) return done(err);
 
         expect(res.body).to.be.an('object');
         expect(res.body).to.have.property('status').equals(404).that.is.a('number');
-        expect(res.body).to.have.property('message').equals('Sorry! there are no red-flags.').that.is.a('string');
+        expect(res.body).to.have.property('error').equals('Sorry! a red-flag not found.').that.is.a('string');
         return done();
       });
   });
 
-  it('should return 403 http status code on missed token', (done) => {
+  it('should return 403 http status code on undefined token', (done) => {
     chai.request(app)
-      .get('/api/v1/red-flags')
+      .patch(`/api/v1/red-flags/${4}/restart`)
       .end((err, res) => {
         if (err) return done(err);
 
@@ -78,9 +80,9 @@ describe('TEST 04: Testing an endpoint of retrieving all Red-Flag for a user', (
       });
   });
 
-  it('should return 401 http status code on the Invalid Token', (done) => {
+  it('should return 401 http status code on Invalid Token', (done) => {
     chai.request(app)
-      .get('/api/v1/red-flags')
+      .patch(`/api/v1/red-flags/${4}/restart`)
       .set('token', 'bad-token')
       .end((err, res) => {
         if (err) return done(err);
@@ -92,10 +94,10 @@ describe('TEST 04: Testing an endpoint of retrieving all Red-Flag for a user', (
       });
   });
 
-  it('should return 401 http status code on unAuthorized request', (done) => {
+  it('should return 401 http status code on not allowed access', (done) => {
     chai.request(app)
-      .get('/api/v1/red-flags')
-      .set('token', admin1Token)
+      .patch(`/api/v1/red-flags/${4}/restart`)
+      .set('token', readlAdminToken)
       .end((err, res) => {
         if (err) return done(err);
 
