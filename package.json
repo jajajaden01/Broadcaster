@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "nodemon --exec babel-node -- server/server.js",
     "server": "babel-node -- server/server.js",
-    "check": "nodemon --exec babel-node -- server/middleware/UserToken.js",
-    "test": "nyc mocha --require @babel/register server/tests/* --recursive --exit",
+    "check": "nodemon --exec babel-node -- server/v1/middleware/UserToken.js",
+    "test": "NODE_ENV=test npm run drop && NODE_ENV=test nyc mocha --require @babel/polyfill --require @babel/register server/v2/tests/* --recursive --exit",
+    "drop": "babel-node server/v2/models/dropDB.js",
     "local:coveralls": "nyc npm run test && nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
@@ -26,6 +27,7 @@
     "@babel/cli": "^7.7.0",
     "@babel/core": "^7.7.2",
     "@babel/node": "^7.7.0",
+    "@babel/polyfill": "^7.7.0",
     "@babel/preset-env": "^7.7.1",
     "@babel/register": "^7.7.0",
     "@hapi/joi": "^16.1.7",
@@ -40,7 +42,8 @@
     "jsonwebtoken": "^8.5.1",
     "mocha": "^6.2.2",
     "multer": "^1.4.2",
-    "nodemon": "^1.19.4"
+    "nodemon": "^1.19.4",
+    "pg": "^7.14.0"
   },
   "devDependencies": {
     "eslint": "^6.7.1",
