@@ -4,7 +4,6 @@ import UserFakeData from '../mockdata/UserFakeData';
 import app from '../../app';
 
 chai.use(chaiHttp);
-
 const { expect } = chai;
 
 let thatUser = UserFakeData.saveFakeUser();
@@ -23,7 +22,7 @@ describe('TEST 01: Test Sign-Up endpoint', () => {
       expect(res.body.data.token).that.is.a('string');
       expect(res.body.data.user_details).to.be.an('object');
     } catch (err) {
-      (() => { throw err; }).should.throw();
+      (() => { throw err; }).to.throw();
     }
   });
 
@@ -36,7 +35,7 @@ describe('TEST 01: Test Sign-Up endpoint', () => {
       expect(res.body).to.have.property('status').equals(409).that.is.a('number');
       expect(res.body).to.have.property('error').equals('Sorry! User already exists in the system.').that.is.a('string');
     } catch (err) {
-      (() => { throw err; }).should.throw();
+      (() => { throw err; }).to.throw();
     }
   });
 
@@ -51,7 +50,7 @@ describe('TEST 01: Test Sign-Up endpoint', () => {
       expect(res.body).to.have.property('status').equals(400).that.is.a('number');
       expect(res.body).to.have.property('error').equals('invalid credentials').that.is.a('string');
     } catch (err) {
-      (() => { throw err; }).should.throw();
+      (() => { throw err; }).to.throw();
     }
   });
 });
