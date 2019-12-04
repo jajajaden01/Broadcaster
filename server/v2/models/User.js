@@ -23,7 +23,7 @@ class User {
     return rows[0];
   }
 
-  static async checkaUser({ email, password }) {
+  static async checkUser({ email, password }) {
     const checkEmail = await this.getUserByEmail(email);
 
     if (!checkEmail[0]) return false;

@@ -49,7 +49,7 @@ describe('TEST 01: Test Sign-Up endpoint', () => {
         .post('/api/v2/auth/signup')
         .send(thatUser);
 
-      expect(res.body).to.have.property('status').equals(400).that.is.a('number');
+      expect(res.body).to.have.property('status').equals(401).that.is.a('number');
       expect(res.body).to.have.property('error').equals('invalid credentials').that.is.a('string');
     } catch (err) {
       (() => { throw err; }).should.throw();

@@ -16,6 +16,5 @@
         "sourceType": "module"
     },
     "rules": {
-        "no-console": "off"
     }
 }

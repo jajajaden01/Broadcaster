@@ -16,12 +16,12 @@ class UserController {
 
       const isSaved = await User.saveUser(req.body);
 
-      const theToken = UserToken.generateToken({ id: isSaved.id, email, userType: 'User' });
+      const token = UserToken.generateToken({ id: isSaved.id, email, userType: 'User' });
       return res.status(201).json({
         status: res.statusCode,
         message: 'User created successfully.',
         data: {
-          token: theToken,
+          token,
           user_details: {
             First_Name: isSaved.firstname,
             Last_Name: isSaved.lastname,

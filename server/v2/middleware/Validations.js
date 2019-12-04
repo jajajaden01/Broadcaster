@@ -13,11 +13,13 @@ class Validations {
 
     const { error } = schema.validate(req.body);
     if (error) {
-      res.status(400).json({
+      res.status(401).json({
         status: res.statusCode,
         error: 'invalid credentials',
       });
-    } else next();
+    }
+
+    next();
   }
 }
 
