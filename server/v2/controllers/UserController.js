@@ -36,6 +36,38 @@ class UserController {
       });
     }
   }
+
+  static async signin(req, res) {
+    try {
+      const userExist = await User.checkUser(req.body);
+
+      if (!userExist) {
+        return res.status(401).json({ status: res.statusCode, error: 'Incorrect Email or Password' });
+      }
+
+      const token = UserToken.generateToken({
+        id: userExist.id,
+        email: userExist.email,
+        userType: 'User',
+      });
+
+      return res.status(200).header('token', token).json({
+        status: res.statusCode,
+        message: 'User is successfully logged in',
+        data: {
+          token,
+          First_Name: userExist.firstname,
+          Last_Name: userExist.lastname,
+          Email: userExist.email,
+        },
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: res.statusCode,
+        error: error.message,
+      });
+    }
+  }
 }
 
 export default UserController;
