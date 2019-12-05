@@ -50,11 +50,12 @@ class IncidentController {
   static async viewOneRedFlag(req, res) {
     try {
       const userId = req.userSignedIn.id;
+      const oneData = await Incident.getoneIncident(req.params.redFlagId);
+      if (!oneData) return res.status(404).json({ status: res.statusCode, error: 'Sorry! that red-flag not found.' });
+
       const redFlag = await Incident.getIncidentById(Number(userId), req.params.redFlagId);
 
-      if (!redFlag) {
-        return res.status(404).json({ status: res.statusCode, message: 'Sorry! that red-flag not found.' });
-      }
+      if (!redFlag) return res.status(403).json({ status: res.statusCode, message: 'You are not allowed to access this record !' });
 
       return res.status(200).json({ status: res.statusCode, data: redFlag });
     } catch (err) {
@@ -70,6 +71,14 @@ class IncidentController {
       const userId = req.userSignedIn.id;
 
       const locationUpdate = await Incident.editRedFlagLocation(userId, req.params, req.body);
+
+      if (locationUpdate === 'not-allowed') {
+        return res.status(403).json({
+          status: res.statusCode,
+          error: 'You are not allowed to access this record !',
+        });
+      }
+
       if (locationUpdate) {
         return res.status(200).json({
           status: res.statusCode,
@@ -96,6 +105,14 @@ class IncidentController {
     try {
       const userId = req.userSignedIn.id;
       const commentUpdate = await Incident.editRedFlagComment(userId, req.params, req.body);
+
+      if (commentUpdate === 'not-allowed') {
+        return res.status(403).json({
+          status: res.statusCode,
+          error: 'You are not allowed to access this record !',
+        });
+      }
+
       if (commentUpdate) {
         return res.status(200).json({
           status: res.statusCode,
@@ -122,6 +139,14 @@ class IncidentController {
     try {
       const userId = req.userSignedIn.id;
       const redFlagToRemove = await Incident.deleteRedFlag(userId, req.params);
+
+      if (redFlagToRemove === 'not-allowed') {
+        return res.status(403).json({
+          status: res.statusCode,
+          error: 'You are not allowed to access this record !',
+        });
+      }
+
       if (redFlagToRemove) {
         return res.status(200).json({
           status: res.statusCode,
@@ -135,6 +160,40 @@ class IncidentController {
       return res.status(404).json({
         status: res.statusCode,
         data: 'Sorry! a red-flag\'s record to delete, not found.',
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: res.statusCode,
+        error: err.message,
+      });
+    }
+  }
+
+  static async putInPending(req, res) {
+    try {
+      const userId = req.userSignedIn.id;
+      const recordInPending = await Incident.editIncidentStatus(userId, req.params, 'pending');
+
+      if (recordInPending === 'not-allowed') {
+        return res.status(403).json({
+          status: res.statusCode,
+          error: 'You are not allowed to access this record !',
+        });
+      }
+
+      if (recordInPending) {
+        return res.status(200).json({
+          status: res.statusCode,
+          data: {
+            id: recordInPending.id,
+            message: 'This red-flag has been added in pending state.',
+          },
+        });
+      }
+
+      return res.status(404).json({
+        status: res.statusCode,
+        error: 'Sorry! a red-flag not found.',
       });
     } catch (err) {
       return res.status(500).json({

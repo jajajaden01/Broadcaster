@@ -53,6 +53,21 @@ describe('TEST 06: Testing an endpoint for updating Red-Flag comment', () => {
     }
   });
 
+  it('should return 403 http status code on unallowed access', async () => {
+    try {
+      const res = await chai.request(app)
+        .patch(`/api/v2/red-flags/${insertedId}/comment`)
+        .set('token', user2Token)
+        .send({ comment: aRedFlag.editComment });
+
+      expect(res.body).to.be.an('object');
+      expect(res.body).to.have.property('status').equals(403).that.is.a('number');
+      expect(res.body).to.have.property('error').that.is.a('string');
+    } catch (err) {
+      (() => { throw err; }).should.throw();
+    }
+  });
+
   it('should return 404 http status code on No found record to update it comment', async () => {
     try {
       const res = await chai.request(app)

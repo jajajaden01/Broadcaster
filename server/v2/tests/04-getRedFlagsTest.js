@@ -9,9 +9,7 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
-const {
-  user1Token, user2Token,
-} = UserFakeData.getUserToken();
+const { user1Token, user2Token } = UserFakeData.getUserToken();
 
 const redFlag = IncidentFakeData.saveRedFlag();
 const redFlagFiles = IncidentFakeData.saveRedFlagFiles();

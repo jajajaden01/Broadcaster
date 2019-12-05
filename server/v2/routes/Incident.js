@@ -11,5 +11,6 @@ router.get('/:redFlagId', HeaderToken.isUser, IncidentController.viewOneRedFlag)
 router.patch('/:redFlagId/location', Validations.validateLocation, HeaderToken.isUser, IncidentController.updateRedFlagLocation);
 router.patch('/:redFlagId/comment', Validations.validateComment, HeaderToken.isUser, IncidentController.updateRedFlagComment);
 router.delete('/:redFlagId', HeaderToken.isUser, IncidentController.removeRedFlag);
+router.patch('/:redFlagId/pending', HeaderToken.isUser, IncidentController.putInPending);
 
 export default router;
