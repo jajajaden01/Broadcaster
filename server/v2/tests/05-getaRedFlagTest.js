@@ -33,7 +33,7 @@ describe('TEST 05: Testing an endpoint to get a Red-Flag', () => {
       .field('lat', redFlag.lat)
       .field('long', redFlag.long);
 
-    insertedId = res.body.data.id;
+    insertedId = await res.body.data.id;
   });
 
   it('should return 200 http status code when we found a record', async () => {
