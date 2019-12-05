@@ -25,17 +25,20 @@ describe('TEST 01: Test Sign-Up endpoint', () => {
       expect(res.body.data.user_details).to.be.an('object');
     } catch (err) {
       (() => { throw err; }).should.throw();
-      // process.stdout.write(`${err.message}\n`);
     }
   });
 
   it('should return 409 http status code on a User already exists in the system.', async () => {
-    const res = await chai.request(app)
-      .post('/api/v2/auth/signup')
-      .send(thatUser);
+    try {
+      const res = await chai.request(app)
+        .post('/api/v2/auth/signup')
+        .send(thatUser);
 
-    expect(res.body).to.have.property('status').equals(409).that.is.a('number');
-    expect(res.body).to.have.property('error').equals('Sorry! User already exists in the system.').that.is.a('string');
+      expect(res.body).to.have.property('status').equals(409).that.is.a('number');
+      expect(res.body).to.have.property('error').equals('Sorry! User already exists in the system.').that.is.a('string');
+    } catch (err) {
+      (() => { throw err; }).should.throw();
+    }
   });
 
   it('should return 400 http status code on invalid credentials', async () => {

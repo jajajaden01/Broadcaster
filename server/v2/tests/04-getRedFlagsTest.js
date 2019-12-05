@@ -49,13 +49,17 @@ describe('TEST 04: Testing an endpoint of retrieving all Red-Flag for a user', (
   });
 
   it('should return 404 http status code on No Found red-flags.', async () => {
-    const res = await chai.request(app)
-      .get('/api/v2/red-flags')
-      .set('token', user2Token);
+    try {
+      const res = await chai.request(app)
+        .get('/api/v2/red-flags')
+        .set('token', user2Token);
 
-    expect(res.body).to.be.an('object');
-    expect(res.body).to.have.property('status').equals(404).that.is.a('number');
-    expect(res.body).to.have.property('message').equals('Sorry! there are no red-flags.').that.is.a('string');
+      expect(res.body).to.be.an('object');
+      expect(res.body).to.have.property('status').equals(404).that.is.a('number');
+      expect(res.body).to.have.property('message').equals('Sorry! there are no red-flags.').that.is.a('string');
+    } catch (err) {
+      (() => { throw err; }).should.throw();
+    }
   });
 
   it('should return 403 http status code on missed token', async () => {
