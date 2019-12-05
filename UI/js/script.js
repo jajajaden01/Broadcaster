@@ -41,43 +41,21 @@ selectElement('.menu-icon').addEventListener('click', () => {
   }
 });
 
-/*
-function hide_subMenus() {
-  const red_classes = [...selectElement('.menu-list').childNodes[5].classList];
-  const inter_classes = [...selectElement('.menu-list').childNodes[13].classList];
+selectElement('.menu-red').addEventListener('click', () => {
+  selectElement('.interv').classList.remove('show-me');
+  selectElement('.interv').classList.add('hide-me');
 
-  if (red_classes.includes('show-me')) {
-    selectElement('.menu-list').childNodes[5].classList.remove('show-me');
-    selectElement('.menu-list').childNodes[5].classList.add('hide-me');
-  }
+  selectElement('.redflag').classList.remove('hide-me');
+  selectElement('.redflag').classList.add('show-me');
+});
 
-  if (inter_classes.includes('show-me')) {
-    selectElement('.menu-list').childNodes[13].classList.remove('show-me');
-    selectElement('.menu-list').childNodes[13].classList.add('hide-me');
-  }
-}
-selectElement('.red-sub').addEventListener('click', (e) => {
-  const red_classes = [...selectElement('.menu-list').childNodes[5].classList];
-  if (red_classes.includes('show-me')) {
-    hide_subMenus();
-    const inter_classes = [...selectElement('.menu-list').childNodes[13].classList];
-    console.log(inter_classes);
-  } else {
-    hide_subMenus();
-    selectElement('.menu-list').childNodes[5].classList.add('show-me');
-  }
-}, false);
+selectElement('.menu-inter').addEventListener('click', () => {
+  selectElement('.redflag').classList.remove('show-me');
+  selectElement('.redflag').classList.add('hide-me');
 
-selectElement('.inter-sub').addEventListener('click', (e) => {
-  const red_classes = [...selectElement('.menu-list').childNodes[13].classList];
-  if (red_classes.includes('show-me')) {
-    hide_subMenus();
-  } else {
-    hide_subMenus();
-    selectElement('.menu-list').childNodes[13].classList.add('show-me');
-  }
-}, false);
-*/
+  selectElement('.interv').classList.remove('hide-me');
+  selectElement('.interv').classList.add('show-me');
+});
 
 selectElement('.the-btn-add').addEventListener('click', () => {
   selectElement('.model-add').classList.add('show-me');
