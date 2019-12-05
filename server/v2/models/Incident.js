@@ -39,6 +39,18 @@ class User {
 
     return rows[0];
   }
+
+  static async editRedFlagLocation(userId, { redFlagId }, { lat, long }) {
+    const redFlag = await this.getIncidentById(userId, redFlagId);
+    if (!redFlag) return false;
+
+    const location = `${lat},${long}`;
+    const { rows } = await DBConnection.query(
+      Queries.incidentTable.updateLocation, [location, redFlagId],
+    );
+
+    return rows[0];
+  }
 }
 
 export default User;
