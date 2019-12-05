@@ -32,6 +32,14 @@ class User {
     return rows;
   }
 
+  static async getoneIncident(id) {
+    const { rows } = await DBConnection.query(
+      Queries.incidentTable.anIncident, [id],
+    );
+
+    return rows[0];
+  }
+
   static async getIncidentById(userId, redflagId) {
     const { rows } = await DBConnection.query(
       Queries.incidentTable.oneIncident, [userId, redflagId],
@@ -41,8 +49,11 @@ class User {
   }
 
   static async editRedFlagLocation(userId, { redFlagId }, { lat, long }) {
+    const oneData = await this.getoneIncident(redFlagId);
+    if (!oneData) return false;
+
     const redFlag = await this.getIncidentById(userId, redFlagId);
-    if (!redFlag) return false;
+    if (!redFlag) return 'not-allowed';
 
     const location = `${lat},${long}`;
     const { rows } = await DBConnection.query(
@@ -53,8 +64,11 @@ class User {
   }
 
   static async editRedFlagComment(userId, { redFlagId }, { comment }) {
+    const oneData = await this.getoneIncident(redFlagId);
+    if (!oneData) return false;
+
     const redFlag = await this.getIncidentById(userId, redFlagId);
-    if (!redFlag) return false;
+    if (!redFlag) return 'not-allowed';
 
     const { rows } = await DBConnection.query(
       Queries.incidentTable.updateComment, [comment, redFlagId],
@@ -64,14 +78,36 @@ class User {
   }
 
   static async deleteRedFlag(userId, { redFlagId }) {
+    const oneData = await this.getoneIncident(redFlagId);
+    if (!oneData) return false;
+
     const redFlag = await this.getIncidentById(userId, redFlagId);
-    if (!redFlag) return false;
+    if (!redFlag) return 'not-allowed';
 
     const { rows } = await DBConnection.query(
       Queries.incidentTable.deleteIncident, [redFlagId],
     );
 
     return rows[0];
+  }
+
+  static async editIncidentStatus(userId, { redFlagId }, status) {
+    const oneData = await this.getoneIncident(redFlagId);
+    if (!oneData) return false;
+
+    const redFlag = await this.getIncidentById(userId, redFlagId);
+    if (!redFlag) return 'not-allowed';
+
+    if (status === 'pending') {
+      if (redFlag.status === 'draft') {
+        const { rows } = await DBConnection.query(
+          Queries.incidentTable.updateStatus, [status, redFlagId],
+        );
+        return rows[0];
+      }
+    }
+
+    return false;
   }
 }
 

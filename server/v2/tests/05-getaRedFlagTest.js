@@ -9,9 +9,7 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
-const {
-  user1Token, user2Token,
-} = UserFakeData.getUserToken();
+const { user1Token, user2Token } = UserFakeData.getUserToken();
 
 const redFlag = IncidentFakeData.saveRedFlag();
 const redFlagFiles = IncidentFakeData.saveRedFlagFiles();
@@ -48,6 +46,20 @@ describe('TEST 05: Testing an endpoint to get a Red-Flag', () => {
       expect(res.body).to.have.property('status').equals(200).that.is.a('number');
       expect(res.body).to.have.property('data').that.is.a('object');
       expect(res.body).to.have.property('data').that.includes.property('id').that.is.a('number');
+    } catch (err) {
+      (() => { throw err; }).should.throw();
+    }
+  });
+
+  it('should return 403 http status code on unallowed access', async () => {
+    try {
+      const res = await chai.request(app)
+        .get(`/api/v2/red-flags/${insertedId}`)
+        .set('token', user2Token);
+
+      expect(res.body).to.be.an('object');
+      expect(res.body).to.have.property('status').equals(403).that.is.a('number');
+      expect(res.body).to.have.property('error').that.is.a('string');
     } catch (err) {
       (() => { throw err; }).should.throw();
     }

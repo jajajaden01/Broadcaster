@@ -41,7 +41,7 @@ class Validations {
   static validateIncident(req, res, next) {
     const schema = Joi.object().keys({
       title: Joi.string().min(10).required(),
-      type: Joi.string().min(5).required(),
+      type: Joi.string().valid('Red-Flag', 'Intervention').required(),
       comment: Joi.string().min(15).required(),
       lat: Joi.number().required(),
       long: Joi.number().required(),
@@ -102,8 +102,8 @@ class Validations {
 
   static validateLocation(req, res, next) {
     const schema = Joi.object().keys({
-      lat: Joi.number().required(),
-      long: Joi.number().required(),
+      lat: Joi.number().integer().required(),
+      long: Joi.number().integer().required(),
     });
 
     try {

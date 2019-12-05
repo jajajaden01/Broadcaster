@@ -34,6 +34,8 @@ const incidentTable = {
   updateLocation: 'UPDATE incident SET location = $1 WHERE id = $2 RETURNING *',
   updateComment: 'UPDATE incident SET comment = $1 WHERE id = $2 RETURNING *',
   deleteIncident: 'DELETE FROM  incident WHERE id = $1 RETURNING *',
+  updateStatus: 'UPDATE incident SET status = $1 WHERE id = $2 RETURNING *',
+  anIncident: 'SELECT * FROM incident WHERE id = $1',
 };
 
 export default { userTable, incidentTable };

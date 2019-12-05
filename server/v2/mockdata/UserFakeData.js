@@ -40,24 +40,7 @@ class UserFakeData {
       userType: 'User',
     }, process.env.SECRET_KEY);
 
-    const admin1Token = jwt.sign({
-      id: 1,
-      email: `admin1${faker.internet.email()}`,
-      userType: 'Admin',
-    }, process.env.SECRET_KEY);
-
-    const admin2Token = jwt.sign({
-      id: -2,
-      email: 'kante@gmail.com',
-      userType: 'Admin',
-    }, process.env.SECRET_KEY);
-
-    return {
-      user1Token,
-      user2Token,
-      admin1Token,
-      admin2Token,
-    };
+    return { user1Token, user2Token };
   }
 }
 
