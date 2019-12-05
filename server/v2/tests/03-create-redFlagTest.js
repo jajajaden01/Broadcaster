@@ -16,45 +16,53 @@ const redFlagFiles = IncidentFakeData.saveRedFlagFiles();
 
 describe('TEST 03: Testing an endpoint of creating a Red-Flag', () => {
   it('should return 201 http status code on success.', async () => {
-    const res = await chai.request(app)
-      .post('/api/v2/red-flags')
-      .set('token', user1Token)
-      .type('form')
-      .attach('images', fs.readFileSync(redFlagFiles.image1Path), redFlagFiles.image1)
-      .attach('images', fs.readFileSync(redFlagFiles.image2Path), redFlagFiles.image2)
-      .attach('videos', fs.readFileSync(redFlagFiles.video1Path), redFlagFiles.video1)
-      .attach('videos', fs.readFileSync(redFlagFiles.video2Path), redFlagFiles.video2)
-      .field('title', redFlag.title)
-      .field('type', redFlag.type)
-      .field('status', redFlag.pendingStatus)
-      .field('comment', redFlag.comment)
-      .field('lat', redFlag.lat)
-      .field('long', redFlag.long);
+    try {
+      const res = await chai.request(app)
+        .post('/api/v2/red-flags')
+        .set('token', user1Token)
+        .type('form')
+        .attach('images', fs.readFileSync(redFlagFiles.image1Path), redFlagFiles.image1)
+        .attach('images', fs.readFileSync(redFlagFiles.image2Path), redFlagFiles.image2)
+        .attach('videos', fs.readFileSync(redFlagFiles.video1Path), redFlagFiles.video1)
+        .attach('videos', fs.readFileSync(redFlagFiles.video2Path), redFlagFiles.video2)
+        .field('title', redFlag.title)
+        .field('type', redFlag.type)
+        .field('status', redFlag.pendingStatus)
+        .field('comment', redFlag.comment)
+        .field('lat', redFlag.lat)
+        .field('long', redFlag.long);
 
-    expect(res.body).to.be.an('object');
-    expect(res.body).to.have.property('status').equals(201).that.is.a('number');
-    expect(res.body).to.have.property('data').that.is.a('object');
-    expect(res.body).to.have.property('data').that.includes.property('id').that.is.a('number');
-    expect(res.body).to.have.property('data').that.includes.property('message').equals(`Created ${redFlag.type} record`).that.is.a('string');
+      expect(res.body).to.be.an('object');
+      expect(res.body).to.have.property('status').equals(201).that.is.a('number');
+      expect(res.body).to.have.property('data').that.is.a('object');
+      expect(res.body).to.have.property('data').that.includes.property('id').that.is.a('number');
+      expect(res.body).to.have.property('data').that.includes.property('message').equals(`Created ${redFlag.type} record`).that.is.a('string');
+    } catch (err) {
+      (() => { throw err; }).should.throw();
+    }
   });
 
   it('should return 409 http status code on the Incident that already exist.', async () => {
-    const res = await chai.request(app)
-      .post('/api/v2/red-flags')
-      .set('token', user1Token)
-      .type('form')
-      .attach('images', fs.readFileSync(redFlagFiles.image1Path), redFlagFiles.image1)
-      .attach('videos', fs.readFileSync(redFlagFiles.video1Path), redFlagFiles.video1)
-      .field('title', redFlag.title)
-      .field('type', redFlag.type)
-      .field('status', redFlag.pendingStatus)
-      .field('comment', redFlag.comment)
-      .field('lat', redFlag.lat)
-      .field('long', redFlag.long);
+    try {
+      const res = await chai.request(app)
+        .post('/api/v2/red-flags')
+        .set('token', user1Token)
+        .type('form')
+        .attach('images', fs.readFileSync(redFlagFiles.image1Path), redFlagFiles.image1)
+        .attach('videos', fs.readFileSync(redFlagFiles.video1Path), redFlagFiles.video1)
+        .field('title', redFlag.title)
+        .field('type', redFlag.type)
+        .field('status', redFlag.pendingStatus)
+        .field('comment', redFlag.comment)
+        .field('lat', redFlag.lat)
+        .field('long', redFlag.long);
 
-    expect(res.body).to.be.an('object');
-    expect(res.body).to.have.property('status').equals(409).that.is.a('number');
-    expect(res.body).to.have.property('error').equals('Sorry! this Incident already exist.').that.is.a('string');
+      expect(res.body).to.be.an('object');
+      expect(res.body).to.have.property('status').equals(409).that.is.a('number');
+      expect(res.body).to.have.property('error').equals('Sorry! this Incident already exist.').that.is.a('string');
+    } catch (err) {
+      (() => { throw err; }).should.throw();
+    }
   });
 
   it('should return 400 http status code on Bad request', async () => {
