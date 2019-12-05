@@ -13,4 +13,22 @@ const userTable = {
   isUserExist: 'SELECT * FROM users WHERE email = $1',
 };
 
-export default { userTable };
+const incidentTable = {
+  createTable: `CREATE TABLE IF NOT EXISTS 
+    incident(
+      id SERIAL PRIMARY KEY NOT NULL,
+      title VARCHAR(100) NOT NULL,
+      type VARCHAR(128) NOT NULL,
+      location VARCHAR(100) NOT NULL,
+      status VARCHAR(50) NOT NULL,
+      images TEXT[],
+      videos TEXT[],
+      comment TEXT NOT NULL,
+      createdOn VARCHAR(100) NOT NULL,
+      createdBy INT NOT NULL
+      )`,
+  insertIncident: 'INSERT INTO incident( title, type, comment, location, status, images, videos, createdOn, createdBy) VALUES($1 ,$2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
+  incidentExist: 'SELECT * FROM incident WHERE title = $1 AND comment = $2',
+};
+
+export default { userTable, incidentTable };
