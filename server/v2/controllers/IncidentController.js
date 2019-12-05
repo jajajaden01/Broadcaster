@@ -91,6 +91,32 @@ class IncidentController {
       });
     }
   }
+
+  static async updateRedFlagComment(req, res) {
+    try {
+      const userId = req.userSignedIn.id;
+      const commentUpdate = await Incident.editRedFlagComment(userId, req.params, req.body);
+      if (commentUpdate) {
+        return res.status(200).json({
+          status: res.statusCode,
+          data: {
+            id: commentUpdate.id,
+            message: 'Updated red-flag record\'s comment.',
+          },
+        });
+      }
+
+      return res.status(404).json({
+        status: res.statusCode,
+        data: 'Sorry! a red-flag\'s comment to edit, not found.',
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: res.statusCode,
+        error: err.message,
+      });
+    }
+  }
 }
 
 export default IncidentController;

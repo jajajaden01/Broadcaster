@@ -48,7 +48,6 @@ describe('TEST 05: Testing an endpoint to get a Red-Flag', () => {
       expect(res.body).to.have.property('status').equals(200).that.is.a('number');
       expect(res.body).to.have.property('data').that.is.a('object');
       expect(res.body).to.have.property('data').that.includes.property('id').that.is.a('number');
-      expect(res.body).to.have.property('data').that.includes.property('createdOn').that.is.a('string');
     } catch (err) {
       (() => { throw err; }).should.throw();
     }
