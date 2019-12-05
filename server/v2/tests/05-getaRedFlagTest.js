@@ -15,7 +15,7 @@ const {
 
 const redFlag = IncidentFakeData.saveRedFlag();
 const redFlagFiles = IncidentFakeData.saveRedFlagFiles();
-let insertedData = {};
+let insertedId = 0;
 describe('TEST 05: Testing an endpoint to get a Red-Flag', () => {
   it('should return 201 http status code on success. after creating the 2nd record', async () => {
     const res = await chai.request(app)
@@ -33,13 +33,14 @@ describe('TEST 05: Testing an endpoint to get a Red-Flag', () => {
       .field('lat', redFlag.lat)
       .field('long', redFlag.long);
 
-    insertedData = res.body.data;
+    const { id } = res.body.data;
+    insertedId = id;
   });
 
   it('should return 200 http status code when we found a record', async () => {
     try {
       const res = await chai.request(app)
-        .get(`/api/v2/red-flags/${insertedData.id}`)
+        .get(`/api/v2/red-flags/${insertedId}`)
         .set('token', user1Token);
 
       expect(res.body).to.be.an('object');
@@ -68,7 +69,7 @@ describe('TEST 05: Testing an endpoint to get a Red-Flag', () => {
 
   it('should return 401 http status code on Invalid token', async () => {
     const res = await chai.request(app)
-      .get(`/api/v2/red-flags/${insertedData.id}`)
+      .get(`/api/v2/red-flags/${insertedId}`)
       .set('token', 'bad-token');
 
     expect(res.body).to.be.an('object');
@@ -78,7 +79,7 @@ describe('TEST 05: Testing an endpoint to get a Red-Flag', () => {
 
   it('should return 403 http status code on Not signed-in user', async () => {
     const res = await chai.request(app)
-      .get(`/api/v2/red-flags/${insertedData.id}`);
+      .get(`/api/v2/red-flags/${insertedId}`);
 
     expect(res.body).to.be.an('object');
     expect(res.body).to.have.property('status').equals(403).that.is.a('number');
