@@ -15,6 +15,7 @@ const {
 
 const redFlag = IncidentFakeData.saveRedFlag();
 const redFlagFiles = IncidentFakeData.saveRedFlagFiles();
+let insertedData = {};
 let insertedId = 0;
 describe('TEST 05: Testing an endpoint to get a Red-Flag', () => {
   it('should return 201 http status code on success. after creating the 2nd record', async () => {
@@ -33,10 +34,10 @@ describe('TEST 05: Testing an endpoint to get a Red-Flag', () => {
       .field('lat', redFlag.lat)
       .field('long', redFlag.long);
 
-    const insertedData = res.body.data;
-    insertedId = insertedData.id;
+    insertedData = res.body.data;
   });
 
+  insertedId = insertedData.id;
   it('should return 200 http status code when we found a record', async () => {
     try {
       const res = await chai.request(app)
