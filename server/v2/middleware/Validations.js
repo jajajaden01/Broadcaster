@@ -99,6 +99,28 @@ class Validations {
     });
     return upload.fields([{ name: 'images', maxCount: 4 }, { name: 'videos', maxCount: 2 }]);
   }
+
+  static validateLocation(req, res, next) {
+    const schema = Joi.object().keys({
+      lat: Joi.number().required(),
+      long: Joi.number().required(),
+    });
+
+    try {
+      const { error } = schema.validate(req.body);
+      if (error) {
+        res.status(400).json({
+          status: res.statusCode,
+          error: error.details[0].message,
+        });
+      } else next();
+    } catch (err) {
+      res.status(400).json({
+        status: res.statusCode,
+        error: err.message,
+      });
+    }
+  }
 }
 
 export default Validations;

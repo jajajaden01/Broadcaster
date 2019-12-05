@@ -31,6 +31,7 @@ const incidentTable = {
   incidentExist: 'SELECT * FROM incident WHERE title = $1 AND comment = $2',
   allIncident: 'SELECT * FROM incident WHERE createdBy = $1',
   oneIncident: 'SELECT * FROM incident WHERE createdBy = $1 AND id = $2',
+  updateLocation: 'UPDATE incident SET location = $1 WHERE id = $2 RETURNING *',
 };
 
 export default { userTable, incidentTable };
