@@ -117,6 +117,32 @@ class IncidentController {
       });
     }
   }
+
+  static async removeRedFlag(req, res) {
+    try {
+      const userId = req.userSignedIn.id;
+      const redFlagToRemove = await Incident.deleteRedFlag(userId, req.params);
+      if (redFlagToRemove) {
+        return res.status(200).json({
+          status: res.statusCode,
+          data: {
+            id: redFlagToRemove.id,
+            message: 'red-flag record has been deleted.',
+          },
+        });
+      }
+
+      return res.status(404).json({
+        status: res.statusCode,
+        data: 'Sorry! a red-flag\'s record to delete, not found.',
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: res.statusCode,
+        error: err.message,
+      });
+    }
+  }
 }
 
 export default IncidentController;

@@ -16,7 +16,7 @@ class Validations {
     if (error) {
       res.status(401).json({
         status: res.statusCode,
-        error: 'invalid credentials',
+        error: error.details[0].message.replace(/"/g, ''),
       });
     }
 
@@ -33,7 +33,7 @@ class Validations {
     if (error) {
       res.status(401).json({
         status: res.statusCode,
-        error: error.details[0].message,
+        error: 'invalid credentials',
       });
     } else next();
   }
@@ -53,7 +53,7 @@ class Validations {
       if (error) {
         res.status(400).json({
           status: res.statusCode,
-          error: error.details[0].message,
+          error: error.details[0].message.replace(/"/g, ''),
         });
       } else next();
     } catch (err) {
@@ -83,10 +83,10 @@ class Validations {
     const fileFilter = (re, file, cb) => {
       if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg' || file.mimetype === 'image/png' || file.mimetype === 'image/gif') {
         cb(null, true);
-      }
-
-      if (file.mimetype === 'video/mp4') {
+      } else if (file.mimetype === 'video/mp4') {
         cb(null, true);
+      } else {
+        cb(null, false);
       }
     };
 
@@ -111,7 +111,7 @@ class Validations {
       if (error) {
         res.status(400).json({
           status: res.statusCode,
-          error: error.details[0].message,
+          error: error.details[0].message.replace(/"/g, ''),
         });
       } else next();
     } catch (err) {
@@ -132,7 +132,7 @@ class Validations {
       if (error) {
         res.status(400).json({
           status: res.statusCode,
-          error: error.details[0].message,
+          error: error.details[0].message.replace(/"/g, ''),
         });
       } else next();
     } catch (err) {
