@@ -31,6 +31,14 @@ class User {
 
     return rows[0];
   }
+
+  static async getIncidentById(userId, redflagId) {
+    const { rows } = await DBConnection.query(
+      Queries.incidentTable.oneIncident, [userId, redflagId],
+    );
+
+    return rows[0];
+  }
 }
 
 export default User;
