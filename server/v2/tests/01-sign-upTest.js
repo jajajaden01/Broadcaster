@@ -49,6 +49,6 @@ describe('TEST 01: Test Sign-Up endpoint', () => {
       .send(thatUser);
 
     expect(res.body).to.have.property('status').equals(401).that.is.a('number');
-    expect(res.body).to.have.property('error').equals('invalid credentials').that.is.a('string');
+    expect(res.body).to.have.property('error').that.is.a('string');
   });
 });

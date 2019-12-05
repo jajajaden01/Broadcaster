@@ -62,6 +62,17 @@ class User {
 
     return rows[0];
   }
+
+  static async deleteRedFlag(userId, { redFlagId }) {
+    const redFlag = await this.getIncidentById(userId, redFlagId);
+    if (!redFlag) return false;
+
+    const { rows } = await DBConnection.query(
+      Queries.incidentTable.deleteIncident, [redFlagId],
+    );
+
+    return rows[0];
+  }
 }
 
 export default User;
