@@ -121,6 +121,27 @@ class Validations {
       });
     }
   }
+
+  static validateComment(req, res, next) {
+    const schema = Joi.object().keys({
+      comment: Joi.string().min(15).required(),
+    });
+
+    try {
+      const { error } = schema.validate(req.body);
+      if (error) {
+        res.status(400).json({
+          status: res.statusCode,
+          error: error.details[0].message,
+        });
+      } else next();
+    } catch (err) {
+      res.status(400).json({
+        status: res.statusCode,
+        error: err.message,
+      });
+    }
+  }
 }
 
 export default Validations;

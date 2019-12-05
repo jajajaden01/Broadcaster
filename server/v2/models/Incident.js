@@ -29,7 +29,7 @@ class User {
       Queries.incidentTable.allIncident, [userId],
     );
 
-    return rows[0];
+    return rows;
   }
 
   static async getIncidentById(userId, redflagId) {
@@ -47,6 +47,17 @@ class User {
     const location = `${lat},${long}`;
     const { rows } = await DBConnection.query(
       Queries.incidentTable.updateLocation, [location, redFlagId],
+    );
+
+    return rows[0];
+  }
+
+  static async editRedFlagComment(userId, { redFlagId }, { comment }) {
+    const redFlag = await this.getIncidentById(userId, redFlagId);
+    if (!redFlag) return false;
+
+    const { rows } = await DBConnection.query(
+      Queries.incidentTable.updateComment, [comment, redFlagId],
     );
 
     return rows[0];
