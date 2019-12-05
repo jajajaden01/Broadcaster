@@ -28,6 +28,24 @@ class IncidentController {
       });
     }
   }
+
+  static async viewRedFlags(req, res) {
+    try {
+      const userId = req.userSignedIn.id;
+      const redFlags = await Incident.getRedFlags(Number(userId));
+
+      if (!redFlags) {
+        return res.status(404).json({ status: res.statusCode, message: 'Sorry! there are no red-flags.' });
+      }
+
+      return res.status(200).json({ status: res.statusCode, data: redFlags });
+    } catch (err) {
+      return res.status(500).json({
+        status: res.statusCode,
+        error: err.message,
+      });
+    }
+  }
 }
 
 export default IncidentController;

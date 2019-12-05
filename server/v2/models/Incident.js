@@ -23,6 +23,14 @@ class User {
     );
     return rows[0];
   }
+
+  static async getRedFlags(userId) {
+    const { rows } = await DBConnection.query(
+      Queries.incidentTable.allIncident, [userId],
+    );
+
+    return rows[0];
+  }
 }
 
 export default User;

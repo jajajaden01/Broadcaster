@@ -35,7 +35,7 @@ class UserFakeData {
     }, process.env.SECRET_KEY);
 
     const user2Token = jwt.sign({
-      id: 2,
+      id: -2,
       email: `user2${faker.internet.email()}`,
       userType: 'User',
     }, process.env.SECRET_KEY);
@@ -47,7 +47,7 @@ class UserFakeData {
     }, process.env.SECRET_KEY);
 
     const admin2Token = jwt.sign({
-      id: 2,
+      id: -2,
       email: 'kante@gmail.com',
       userType: 'Admin',
     }, process.env.SECRET_KEY);
