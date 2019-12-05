@@ -15,7 +15,7 @@ const {
 
 const redFlag = IncidentFakeData.saveRedFlag();
 const redFlagFiles = IncidentFakeData.saveRedFlagFiles();
-let insertedData = 0;
+let insertedData = {};
 describe('TEST 05: Testing an endpoint to get a Red-Flag', () => {
   it('should return 201 http status code on success. after creating the 2nd record', async () => {
     const res = await chai.request(app)
