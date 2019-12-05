@@ -6,5 +6,6 @@ import HeaderToken from '../middleware/HeaderToken';
 const router = express.Router();
 
 router.post('/', Validations.validateFiles(), Validations.validateIncident, HeaderToken.isUser, IncidentController.createIncident);
+router.get('/', HeaderToken.isUser, IncidentController.viewRedFlags);
 
 export default router;

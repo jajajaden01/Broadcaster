@@ -29,6 +29,7 @@ const incidentTable = {
       )`,
   insertIncident: 'INSERT INTO incident( title, type, comment, location, status, images, videos, createdOn, createdBy) VALUES($1 ,$2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
   incidentExist: 'SELECT * FROM incident WHERE title = $1 AND comment = $2',
+  allIncident: 'SELECT * FROM incident WHERE createdBy = $1',
 };
 
 export default { userTable, incidentTable };
