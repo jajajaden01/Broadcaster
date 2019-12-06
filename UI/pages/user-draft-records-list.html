@@ -31,125 +31,108 @@
         <div class="menus">
             <ul class="menu-list">
                 <li class="list-item"><a href="user-create-incident.html" class="item-link">Create Incident</a></li>
-                <!-- <li class="list-item red-sub span-data"><span class="item-link">Red-Flad<span class="trick">---------</span><span class="cross">&#9660;</span></span></li> -->
-                <li class="list-item menu-title">Red-Flad</li>
-                <div class="sub-menus show-me">
+                
+                <li class="list-item menu-title menu-red">Red-Flad<span class="cross">&#9660;</span></li>
+                <div class="sub-menus redflag show-me">
                     <li class="list-item"><a href="user-draft-records-list.html" class="item-link">Draft</a></li>
                     <li class="list-item"><a href="user-all-records-list.html" class="item-link">In process</a></li>
                     <li class="list-item"><a href="user-all-records-list.html" class="item-link">Resolved</a></li>
                     <li class="list-item"><a href="user-all-records-list.html" class="item-link">Rejected</a></li>
                     <li class="list-item"><a href="user-all-records-list.html" class="item-link">All list</a></li>
                 </div>
-                <!-- <hr class="divide"> -->
-                <li class="list-item menu-title">Intervention</span></li>
-                <div class="sub-menus">
+                
+                <li class="list-item menu-title menu-inter">Intervention<span class="cross">&#9660;</span></li>
+                <div class="sub-menus interv hide-me">
                     <li class="list-item"><a href="user-draft-records-list.html" class="item-link">Draft</a></li>
                     <li class="list-item"><a href="user-all-records-list.html" class="item-link">In process</a></li>
                     <li class="list-item"><a href="user-all-records-list.html" class="item-link">Resolved</a></li>
                     <li class="list-item"><a href="user-all-records-list.html" class="item-link">Rejected</a></li>
                     <li class="list-item"><a href="user-all-records-list.html" class="item-link">All list</a></li>
                 </div>
-                <!-- <hr class="divide"> -->
+
                 <li class="list-item"><a href="user-sing-in.html" class="item-link">Sign out</a></li>
             </ul>
         </div>
         <div class="sec-content">
-            <div class="dash-data">
-                <h1 class="medium-title dash-title">
-                    <span>Red-Flad List</span>
-                    <span class="records">233 records</span>
-                </h1>
-                <p class="table-th">
-                    <span class="table-td">Title</span>
-                    <span class="table-td">Comment</span>
-                    <span class="table-td">Date</span>
-                    <span class="table-td text-center">Action</span>
-                </p>
-
-                <div class="data-item">
-                    <div class="data-sumary">
-                        <p class="data-title hide-me">Title:</p>
-                        <p class="data-title to-change">Corruption in Traffic</p>
-                        <p class="data-content">corruption in Traffic ...</p>
-                        <p class="data-content">23 Sept 2019</p>
-                        <p class="data-actions container-flex">
-                            <button href="#" class="action">Edit</button>
-                            <button href="#" class="action">Delete</button>
-                            <button class="action more" onclick="//more_info()" >Details</button>
-                        </p>
-                    </div>
-                    <div class="data-details hide-me">
-                        <p class="data-title"><strong>Title: </strong>corruption in Traffic</p>
-                        <p class="data-content to-hide">
-                            <strong>Status: </strong>
-                            <span class="in-draft">in draft</span>
-                        </p>
-                        <p class="data-content"><strong>Comment: </strong>corruption in Traffic ...</p>
-                        <p class="data-content"><strong>Location (Lat, Long): </strong>(234345, 34534534)</p>
-                        <p class="data-actions">
-                            <a href="record-details.html" class="action bottom-more">More info</a>
-                        </p>
+                <button class="the-btn-add hide-me">Add Incident</button>
+                <div class="model hide-me model-add">
+                    <div class="model-content">
+                        <h1 class="medium-title dash-title">
+                            <span class="red-color">&#9872;</span>Incident<span class="hint-text">&#10093;</span>Creation
+                            <span class="records the-span-closer">&#10060;</span>
+                        </h1>
+                        <form action="" method="POST" class="dash-form">
+                            <div class="form-col">
+                                <select class="dash-input input-select">
+                                    <option value="red-flag">Choose type of Incident</option>
+                                    <option value="red-flag">Red-Flag</option>
+                                    <option value="intervention">Intervention</option>
+                                </select>
+                                <input type="text" placeholder="Title" class="dash-input" required />
+                                <label for="images" class="dash-label">Images</label>
+                                <input type="file" class="dash-input" multiple required />
+                                <label for="images" class="dash-label">Videos</label>
+                                <input type="file" class="dash-input" multiple required />
+                                <textarea rows="5" placeholder="Comment..." class="dash-input" required></textarea>
+                            </div>
+                            <div class="form-col the-map">
+                                <label for="images" class="dash-label">Choose Location:</label>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1020806.7308128022!2d29.31860949564187!3d-1.9421905312418037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19c29654e73840e3%3A0x7490b026cbcca103!2sRwanda!5e0!3m2!1sen!2srw!4v1572899478190!5m2!1sen!2srw" class="form-map" frameborder="0" allowfullscreen=""></iframe>
+                                <input type="submit" value="Save" class="dash-input dash-submit" />
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="data-item">
-                    <div class="data-sumary">
-                        <p class="data-title hide-me">Title:</p>
-                        <p class="data-title to-change">Corruption in Traffic</p>
-                        <p class="data-content">corruption in Traffic ...</p>
-                        <p class="data-content">23 Sept 2019</p>
-                        <p class="data-actions container-flex">
-                            <button href="#" class="action">Edit</button>
-                            <button href="#" class="action">Delete</button>
-                            <button class="action more" onclick="//more_info()" >Details</button>
-                        </p>
+    
+                <div class="model hide-me model-edit">
+                        <div class="model-content">
+                            <h1 class="medium-title dash-title">
+                                <span class="red-color">&#9872;</span>Incident<span class="hint-text">&#10093;</span>Modification
+                                <span class="records the-edit-closer">&#10060;</span>
+                            </h1>
+                            <form action="" method="POST" class="dash-form">
+                                <div class="form-col">
+                                    <select class="dash-input input-select">
+                                        <option value="red-flag">Red-Flag</option>
+                                        <option value="intervention">Intervention</option>
+                                    </select>
+                                    <input type="text" placeholder="Title" class="dash-input" value="Corruption in Butare, on Top level" required />
+                                    <label for="images" class="dash-label">Images</label>
+                                    <input type="file" class="dash-input" multiple required />
+                                    <label for="images" class="dash-label">Videos</label>
+                                    <input type="file" class="dash-input" multiple required />
+                                    <textarea rows="5" placeholder="Comment..." class="dash-input" required>African countries must develop novel and localized solutions that will curb the corruption. Broadcaster enables any/every citizen to bring any form of these menaces to the appropiate authorities. Broadcaster System for you to change Afirca.</textarea>
+                                </div>
+                                <div class="form-col the-map">
+                                    <label for="images" class="dash-label">Choose Location:</label>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1020806.7308128022!2d29.31860949564187!3d-1.9421905312418037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19c29654e73840e3%3A0x7490b026cbcca103!2sRwanda!5e0!3m2!1sen!2srw!4v1572899478190!5m2!1sen!2srw" class="form-map" frameborder="0" allowfullscreen=""></iframe>
+                                    <input type="submit" value="Save" class="dash-input dash-submit" />
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="data-details hide-me">
-                        <p class="data-title"><strong>Title: </strong>corruption in Traffic</p>
-                        <p class="data-content to-hide">
-                            <strong>Status: </strong>
-                            <span class="in-draft">in draft</span>
-                        </p>
-                        <p class="data-content"><strong>Comment: </strong>corruption in Traffic ...</p>
-                        <p class="data-content"><strong>Location (Lat, Long): </strong>(234345, 34534534)</p>
-                        <p class="data-actions">
-                            <a href="record-details.html" class="action bottom-more">More info</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="data-item">
-                    <div class="data-sumary">
-                        <p class="data-title hide-me">Title:</p>
-                        <p class="data-title to-change">Corruption in Traffic</p>
-                        <p class="data-content">corruption in Traffic ...</p>
-                        <p class="data-content">23 Sept 2019</p>
-                        <p class="data-actions container-flex">
-                            <button href="#" class="action">Edit</button>
-                            <button href="#" class="action">Delete</button>
-                            <button class="action more" onclick="//more_info()" >Details</button>
-                        </p>
-                    </div>
-                    <div class="data-details hide-me">
-                        <p class="data-title"><strong>Title: </strong>corruption in Traffic</p>
-                        <p class="data-content to-hide">
-                            <strong>Status: </strong>
-                            <span class="in-draft">in draft</span>
-                        </p>
-                        <p class="data-content"><strong>Comment: </strong>corruption in Traffic ...</p>
-                        <p class="data-content"><strong>Location (Lat, Long): </strong>(234345, 34534534)</p>
-                        <p class="data-actions">
-                            <a href="record-details.html" class="action bottom-more">More info</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="data-item">
+    
+                <div class="dash-data">
+                    <h1 class="medium-title dash-title">
+                        <span>Red-Flad List</span>
+                        <span class="records">233 records</span>
+                    </h1>
+                    <p class="table-th">
+                        <span class="table-td">Title</span>
+                        <span class="table-td">Comment</span>
+                        <span class="table-td">Date</span>
+                        <span class="table-td text-center">Action</span>
+                    </p>
+    
+                    <div class="data-item">
                         <div class="data-sumary">
                             <p class="data-title hide-me">Title:</p>
                             <p class="data-title to-change">Corruption in Traffic</p>
                             <p class="data-content">corruption in Traffic ...</p>
                             <p class="data-content">23 Sept 2019</p>
                             <p class="data-actions container-flex">
-                                <button href="#" class="action">Edit</button>
-                                <button href="#" class="action">Delete</button>
+                                <button class="action the-btn-edit">Edit</button>
+                                <button class="action">Delete</button>
                                 <button class="action more" onclick="//more_info()" >Details</button>
                             </p>
                         </div>
@@ -157,7 +140,10 @@
                             <p class="data-title"><strong>Title: </strong>corruption in Traffic</p>
                             <p class="data-content to-hide">
                                 <strong>Status: </strong>
-                                <span class="in-draft">in draft</span>
+                                [ <span class="in-draft">in draft</span>
+                                <span class="in-process">in process...</span>
+                                <span class="resolved">resolved</span>
+                                <span class="rejected">rejected</span> ]
                             </p>
                             <p class="data-content"><strong>Comment: </strong>corruption in Traffic ...</p>
                             <p class="data-content"><strong>Location (Lat, Long): </strong>(234345, 34534534)</p>
@@ -173,16 +159,19 @@
                             <p class="data-content">corruption in Traffic ...</p>
                             <p class="data-content">23 Sept 2019</p>
                             <p class="data-actions container-flex">
-                                <button href="#" class="action">Edit</button>
-                                <button href="#" class="action">Delete</button>
-                                <button class="action more" onclick="//more_info()" >Details</button>
+                                    <button class="action the-btn-edit">Edit</button>
+                                <button class="action">Delete</button>
+                                <button class="action more" >Details</button>
                             </p>
                         </div>
                         <div class="data-details hide-me">
                             <p class="data-title"><strong>Title: </strong>corruption in Traffic</p>
                             <p class="data-content to-hide">
                                 <strong>Status: </strong>
-                                <span class="in-draft">in draft</span>
+                                [ <span class="in-draft">in draft</span>
+                                <span class="in-process">in process...</span>
+                                <span class="resolved">resolved</span>
+                                <span class="rejected">rejected</span> ]
                             </p>
                             <p class="data-content"><strong>Comment: </strong>corruption in Traffic ...</p>
                             <p class="data-content"><strong>Location (Lat, Long): </strong>(234345, 34534534)</p>
@@ -198,8 +187,8 @@
                             <p class="data-content">corruption in Traffic ...</p>
                             <p class="data-content">23 Sept 2019</p>
                             <p class="data-actions container-flex">
-                                <button href="#" class="action">Edit</button>
-                                <button href="#" class="action">Delete</button>
+                                <button class="action the-btn-edit">Edit</button>
+                                <button class="action">Delete</button>
                                 <button class="action more" onclick="//more_info()" >Details</button>
                             </p>
                         </div>
@@ -207,7 +196,66 @@
                             <p class="data-title"><strong>Title: </strong>corruption in Traffic</p>
                             <p class="data-content to-hide">
                                 <strong>Status: </strong>
-                                <span class="in-draft">in draft</span>
+                                [ <span class="in-draft">in draft</span>
+                                <span class="in-process">in process...</span>
+                                <span class="resolved">resolved</span>
+                                <span class="rejected">rejected</span> ]
+                            </p>
+                            <p class="data-content"><strong>Comment: </strong>corruption in Traffic ...</p>
+                            <p class="data-content"><strong>Location (Lat, Long): </strong>(234345, 34534534)</p>
+                            <p class="data-actions">
+                                <a href="record-details.html" class="action bottom-more">More info</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-sumary">
+                            <p class="data-title hide-me">Title:</p>
+                            <p class="data-title to-change">Corruption in Traffic</p>
+                            <p class="data-content">corruption in Traffic ...</p>
+                            <p class="data-content">23 Sept 2019</p>
+                            <p class="data-actions container-flex">
+                                <button class="action the-btn-edit">Edit</button>
+                                <button class="action">Delete</button>
+                                <button class="action more">Details</button>
+                            </p>
+                        </div>
+                        <div class="data-details hide-me">
+                            <p class="data-title"><strong>Title: </strong>corruption in Traffic</p>
+                            <p class="data-content to-hide">
+                                <strong>Status: </strong>
+                                [ <span class="in-draft">in draft</span>
+                                <span class="in-process">in process...</span>
+                                <span class="resolved">resolved</span>
+                                <span class="rejected">rejected</span> ]
+                            </p>
+                            <p class="data-content"><strong>Comment: </strong>corruption in Traffic ...</p>
+                            <p class="data-content"><strong>Location (Lat, Long): </strong>(234345, 34534534)</p>
+                            <p class="data-actions">
+                                <a href="record-details.html" class="action bottom-more">More info</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-sumary">
+                            <p class="data-title hide-me">Title:</p>
+                            <p class="data-title to-change">Corruption in Traffic</p>
+                            <p class="data-content">corruption in Traffic ...</p>
+                            <p class="data-content">23 Sept 2019</p>
+                            <p class="data-actions container-flex">
+                                 <button class="action the-btn-edit">Edit</button>
+                                <button class="action">Delete</button>
+                                <button class="action more" onclick="//more_info()" >Details</button>
+                            </p>
+                        </div>
+                        <div class="data-details hide-me">
+                            <p class="data-title"><strong>Title: </strong>corruption in Traffic</p>
+                            <p class="data-content to-hide">
+                                <strong>Status: </strong>
+                                [ <span class="in-draft">in draft</span>
+                                <span class="in-process">in process...</span>
+                                <span class="resolved">resolved</span>
+                                <span class="rejected">rejected</span> ]
                             </p>
                             <p class="data-content"><strong>Comment: </strong>corruption in Traffic ...</p>
                             <p class="data-content"><strong>Location (Lat, Long): </strong>(234345, 34534534)</p>
@@ -223,8 +271,8 @@
                                 <p class="data-content">corruption in Traffic ...</p>
                                 <p class="data-content">23 Sept 2019</p>
                                 <p class="data-actions container-flex">
-                                    <button href="#" class="action">Edit</button>
-                                    <button href="#" class="action">Delete</button>
+                                    <button class="action the-btn-edit">Edit</button>
+                                    <button class="action">Delete</button>
                                     <button class="action more" onclick="//more_info()" >Details</button>
                                 </p>
                             </div>
@@ -232,7 +280,10 @@
                                 <p class="data-title"><strong>Title: </strong>corruption in Traffic</p>
                                 <p class="data-content to-hide">
                                     <strong>Status: </strong>
-                                    <span class="in-draft">in draft</span>
+                                    [ <span class="in-draft">in draft</span>
+                                    <span class="in-process">in process...</span>
+                                    <span class="resolved">resolved</span>
+                                    <span class="rejected">rejected</span> ]
                                 </p>
                                 <p class="data-content"><strong>Comment: </strong>corruption in Traffic ...</p>
                                 <p class="data-content"><strong>Location (Lat, Long): </strong>(234345, 34534534)</p>
@@ -241,9 +292,36 @@
                                 </p>
                             </div>
                         </div>
-
+                        <div class="data-item">
+                                <div class="data-sumary">
+                                    <p class="data-title hide-me">Title:</p>
+                                    <p class="data-title to-change">Corruption in Traffic</p>
+                                    <p class="data-content">corruption in Traffic ...</p>
+                                    <p class="data-content">23 Sept 2019</p>
+                                    <p class="data-actions container-flex">
+                                        <button class="action the-btn-edit">Edit</button>
+                                        <button class="action">Delete</button>
+                                        <button class="action more" onclick="//more_info()" >Details</button>
+                                    </p>
+                                </div>
+                                <div class="data-details hide-me">
+                                    <p class="data-title"><strong>Title: </strong>corruption in Traffic</p>
+                                    <p class="data-content to-hide">
+                                        <strong>Status: </strong>
+                                        [ <span class="in-draft">in draft</span>
+                                        <span class="in-process">in process...</span>
+                                        <span class="resolved">resolved</span>
+                                        <span class="rejected">rejected</span> ]
+                                    </p>
+                                    <p class="data-content"><strong>Comment: </strong>corruption in Traffic ...</p>
+                                    <p class="data-content"><strong>Location (Lat, Long): </strong>(234345, 34534534)</p>
+                                    <p class="data-actions">
+                                        <a href="record-details.html" class="action bottom-more">More info</a>
+                                    </p>
+                                </div>
+                            </div>
+                </div>
             </div>
-        </div>
     </section>
     
     <footer>

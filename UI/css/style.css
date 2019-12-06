@@ -29,7 +29,6 @@ a{ text-decoration: none; }
 .dashboad-body{
     color: #707070;
     background: #428fad;
-    /* background: #52b2d8; */
 }
 
 .text-center{ text-align: center;}
@@ -197,20 +196,15 @@ footer .copy-right{
 }
 
 .sec-dashboad{
-    /* height: calc(100vh - 9.9em); */
-    /* height: 89vh; */
     display: flex;
     justify-content: space-between;
 }
 .menus{
-    /* width: 10em; */
     width: 15em;
     height: 100%;
     background: #428fad;
     display: block;
     transition: display .36s cubic-bezier(0.32, 0.08, 0.24, 1);
-    /* margin-bottom: 5%; */
-    /* padding-bottom: 1em; */
 }
 .menu-list{
     width: 100%;
@@ -233,13 +227,21 @@ footer .copy-right{
 
 /* added cz of LFA cmnts */
 .menu-title{
+    margin: 1em 0;
     background-color: #fff;
     font-size: 1rem;
     padding: .5em;
     color: #428fad;
-    /* width: 100%; */
+    overflow: hidden;
+    cursor: pointer;
 }
-
+.menu-title:hover{
+    background-color: rgb(238, 235, 235);
+}
+.menu-title .cross{
+    float: right;
+    padding: 0 .6em;
+}
 /* added */
 .sub-menus {
     border-bottom: 1px solid #fff;
@@ -252,15 +254,11 @@ footer .copy-right{
 .span-data .item-link{
     overflow: hidden;
 }
-/* .span-data .item-link .cross{
-    float: right;
-} */
+
 .trick{ color: #428fad;}
 /* end of adde */
 .sec-content{
-    /* width: 88%; */
     width: 105em;
-    /* background: #428fad; */
     background: #52b2d8;
 }
 .dash-title{
@@ -320,15 +318,6 @@ footer .copy-right{
     border: 0;
 }
 .input-select{
-    /* appearance: none; */
-    /* -webkit-user-select: none; */
-    /* -webkit-user-select: text; */
-    /* -webkit-user-select: inherit; */
-    /* -webkit-user-select: initial; */
-    /* -webkit-user-select: unset; */
-    /* -webkit-padding-start: .4em; */
-    /* -webkit-padding-end: 20px; */
-
     -webkit-user-select: auto;
     width: 92%;
 }
@@ -346,7 +335,6 @@ footer .copy-right{
     margin: 0 .5em;
     padding: .5em;
 }
-/* .td-action{ text-align: center;} */
 
 .data-item{
     padding: .4em 0;
@@ -447,8 +435,7 @@ footer .copy-right{
 .model .model-content{
     margin: 10% auto;
     width: 90%;
-    background-color: #4d9bb9; /* #52b2d8 */
-    /* background: rgb(0, 0, 0, 0.4); */
+    background-color: #4d9bb9;
     padding: 1%;
     padding-left: 2.5%;
     border-radius: 0.5rem;
@@ -481,7 +468,6 @@ footer .copy-right{
         display: block;
         color: #fff;
         font-size: 2rem;
-        /* line-height: 1.5em; */
         cursor: pointer;
     }
     .menus.menu-responsive{
