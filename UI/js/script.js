@@ -87,3 +87,12 @@ window.onclick = (e) => {
     selectElement('.model-edit').classList.remove('show-me');
   }
 };
+
+document.addEventListener('click', (e) => {
+  const clicked_classList = [...e.target.classList];
+
+  if (clicked_classList.includes('the-btn-edit')) {
+    selectElement('.model-edit').classList.add('show-me');
+    selectElement('.model-edit').classList.remove('hide-me');
+  }
+}, false);

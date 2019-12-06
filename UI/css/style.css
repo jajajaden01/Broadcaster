@@ -254,9 +254,7 @@ footer .copy-right{
 .span-data .item-link{
     overflow: hidden;
 }
-/* .span-data .item-link .cross{
-    float: right;
-} */
+
 .trick{ color: #428fad;}
 /* end of adde */
 .sec-content{
@@ -437,8 +435,7 @@ footer .copy-right{
 .model .model-content{
     margin: 10% auto;
     width: 90%;
-    background-color: #4d9bb9; /* #52b2d8 */
-    /* background: rgb(0, 0, 0, 0.4); */
+    background-color: #4d9bb9;
     padding: 1%;
     padding-left: 2.5%;
     border-radius: 0.5rem;
@@ -471,7 +468,6 @@ footer .copy-right{
         display: block;
         color: #fff;
         font-size: 2rem;
-        /* line-height: 1.5em; */
         cursor: pointer;
     }
     .menus.menu-responsive{
