@@ -35,14 +35,19 @@ Make sure that you have cloned this Repo to your local machine
 ### Scripts to use
 - run `npm run server` to start server
 - run `npm run test` to run tests
+- run `npm run dev` to start development
 - run `npm run coverage` to run and view test coverages
 
 ## API endpoints
 
 **API endpoints with no authentication**
 - POST `api/v1/auth/signup` User Sign up.
-- POST  `api/v1/auth/signin` User Sign in.
-- POST  `api/v1/admin-panel/signin` Admin Sign in.
+- POST `api/v1/auth/signin` User Sign in.
+- POST `api/v1/admin-panel/signin` Admin Sign in.
+
+
+- POST `api/v2/auth/signup` User Sign up.
+- POST `api/v2/auth/signin` User Sign in.
 
 **API endpoints with no authentication**
 - POST `api/v1/red-flags` Create a red-flag
@@ -51,8 +56,18 @@ Make sure that you have cloned this Repo to your local machine
 - PATCH `api/v1/red-flags/:red-flag-id/comment` Modify a red-flag's comment
 - PATCH `api/v1/red-flags/:red-flag-id/location` Modify a red-flag's location
 - DELETE `api/v1/red-flags/:red-flag-id` Delete a red-flag
-- PATCH `api/v1/red-flags/:red-flag-id/restart` Modify a red-flag's status
-- PATCH `api/v1/admin-panel/:red-flag-id/status` Modify a red-flag's status
+- PATCH `api/v1/red-flags/:red-flag-id/restart` Modify a red-flag's status to draft status
+- PATCH `api/v1/admin-panel/:red-flag-id/pending` Modify a red-flag's status to pending status
+- PATCH `api/v1/admin-panel/:red-flag-id/status` Modify a red-flag's status to solved or rejected status
+
+
+- POST `api/v2/red-flags` Create a red-flag
+- GET `api/v2/red-flags` View all red-flag
+- GET `api/v2/red-flags/:red-flag-id` Get a specific red-flag
+- PATCH `api/v2/red-flags/:red-flag-id/comment` Modify a red-flag's comment
+- PATCH `api/v2/red-flags/:red-flag-id/location` Modify a red-flag's location
+- DELETE `api/v2/red-flags/:red-flag-id` Delete a red-flag
+- PATCH `api/v2/red-flags/:red-flag-id/pending` Modify a red-flag's status pending status
 
 ## GitHub Pages
 - link [Broadcaster web](https://jajajaden01.github.io/Broadcaster/UI/pages/)
